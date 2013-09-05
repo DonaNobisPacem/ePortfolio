@@ -1,20 +1,31 @@
 class User < ActiveRecord::Base
-	has_secure_password
-	validates_presence_of :email, :on => :create
-	validates_presence_of :username, :on => :create
-	validates_presence_of :password, :on => :create
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-	attr_accessible :email, :password_digest, :username
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :login
+  # attr_accessible :title, :body
+  attr_accessor :login
 
+  has_many :user_projects
+  has_many :projects, :through => :user_projects
 
-	before_save { |user| user.email = email.downcase }
-	before_save :create_remember_token
+  validates :username,
+  :uniqueness => {
+    :case_sensitive => false
+  }
 
-	validates :username,  presence: true
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	validates :email, presence: true, 
-	format: { with: VALID_EMAIL_REGEX },
-	uniqueness: { case_sensitive: false }
-	validates :password, length: { minimum: 6, on: :create }
-	validates :password_confirmation, presence: { on: :create }
+  def self.find_first_by_auth_conditions(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      else
+        where(conditions).first
+      end
+  end
+
 end

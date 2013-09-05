@@ -1,15 +1,8 @@
-ElectronicPortfolio::Application.routes.draw do
-  #get "welcome/index" 
-  root to: "welcome#index"
+EPortfolio::Application.routes.draw do
+  root :to => 'home#index'
+  devise_for :users
 
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
-  get "users/new"
-  match '/signup',  to: 'users#new'
-
-  get "sessions/new"
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+  resources :projects
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
