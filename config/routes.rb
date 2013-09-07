@@ -2,8 +2,10 @@ EPortfolio::Application.routes.draw do
   root :to => 'home#index'
   devise_for :users
 
-  resources :projects
-
+  resources :projects do
+    resources :project_comments
+  end
+  resources :users
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

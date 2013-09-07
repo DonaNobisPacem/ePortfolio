@@ -1,0 +1,12 @@
+<% provide(:title, 'User Profile') %>
+<h2>User Profile</h2>
+<div class="row">
+  <div class="span6">
+    <p id="notice"> <%= notice %> </p>
+ 
+    <h3>
+      <!--<b>Title:</b> Use this instead for header-->
+      <%= @user_profile.first_name + " " + @user_profile.last_name %>
+    </h3>
+    
+</div>

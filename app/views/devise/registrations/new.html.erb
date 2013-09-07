@@ -1,13 +1,21 @@
 <h2>Sign up</h2>
 
+<% resource.build_user_profile %>
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+  	<h3>User Login:</h3>
  	<%= f.input :username, :required => true, :autofocus => true %>
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
+
+    <h3>Basic Info:</h3>
+    <%= f.fields_for :user_profile do |profile| %>
+    	<%= profile.input :first_name, :required => true %>
+    	<%= profile.input :last_name, :required => true %>
+    <% end %>
   </div>
 
   <div class="form-actions">

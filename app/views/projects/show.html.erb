@@ -1,44 +1,74 @@
 <% provide(:title, 'Project Details') %>
+<head>
+  <script type="text/javascript" src="assets/twitterbootstrap/js/bootstrap-tab.js"></script>
+</head>
+
 <h2>Project Details</h2>
-<div class="row">
-  <div class="span6">
-    <p id="notice"> <%= notice %> </p>
- 
-    <h3>
-      <!--<b>Title:</b> Use this instead for header-->
-      <%= @project.title %>
-    </h3>
-    
-    <p>
-      <b>Contributors:</b>
-      <%= @project.contributor%>
-    </p>
 
-    <p>
-      <b>Description</b>
-      <%= @project.description %>
-    </p>
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#info" data-toggle="tab">Project Information</a></li>
+    <li><a href="#comment" data-toggle="tab">Comments</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="info">
+      <div class="row">
+        <div class="span6">
+          <h3>
+            <!--<b>Title:</b> Use this instead for header-->
+            <%= @project.title %>
+          </h3>
+          <p>
+            <b>Contributors:</b>
+            <%= @project.contributor%>
+          </p>
+          <p>
+            <b>Description</b>
+            <%= @project.description %>
+          </p>
+          <hr>
+          <p>
+            <b>Tags:</b>
+            <%= @project.tag %>
+          </p>
+          <p>
+            <b>Link:</b>
+            <%= @project.link %>
+          </p>
+          <p>
+            <b>Link Type:</b>
+            <%= @project.link_type %>
+          </p>
+          <p>
+            <b>Rating:</b>
+            <%= @project.rating %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="comment">
+      <h3>Comments:</h3>
+        <% if @comments.count > 0 %>
+          <% @comments.each do |comment| %>
+            <div class="container" class="row">
+              <%= UserProfile.where( user_id: comment.user_id ).first.last_name %>:
+              <%= comment.content %> 
+            </div>
+          <% end %>
+          <%= will_paginate @comments %>
+        <% else %>
+          <p>No comments available for this project.</p>
+        <% end %>
 
-    <hr>
-
-    <p>
-      <b>Tags:</b>
-      <%= @project.tag %>
-    </p>
- 
-    <p>
-      <b>Link:</b>
-      <%= @project.link %>
-    </p>
-
-    <p>
-      <b>Link Type:</b>
-      <%= @project.link_type %>
-    </p>
-
-    <p>
-      <b>Rating:</b>
-      <%= @project.rating %>
-    </p>
-    
+      <% if user_signed_in? %>
+        <div class ="container">
+          <%= render 'comments' %>
+        </div>
+      <% else %>
+        <p>Not signed in</p>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+
