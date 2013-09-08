@@ -1,3 +1,4 @@
+<% provide(:title, 'Create Project') %>
 <h2>Create Project</h2>
 
 <%= simple_form_for @project do |f| %>
@@ -8,7 +9,7 @@
     <%= f.input :description, :required => true, :autofocus => true %>
     <%= f.input :link, :required => true %>
     <%= f.input :link_type %>
-    <%= f.input :tag %>
+    <%= f.input :tag_list %>
   </div>
 
   <div class="form-actions">

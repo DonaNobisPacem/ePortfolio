@@ -2,10 +2,16 @@ EPortfolio::Application.routes.draw do
   root :to => 'home#index'
   devise_for :users
 
+  get 'tag/:tag', to: 'projects#index', as: :tag
   resources :projects do
     resources :project_comments
   end
+
   resources :users
+
+  match '/help', :to => 'help#index'
+  match '/users', :to => 'users#index'
+  match '/projects', :to => 'projects#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

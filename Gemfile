@@ -32,6 +32,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-gplus'
 gem 'omniauth-twitter'
 gem 'simple_form'
+gem 'acts-as-taggable-on'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
