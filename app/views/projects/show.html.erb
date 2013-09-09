@@ -29,7 +29,7 @@
           <hr>
           <p>
             <b>Tags:</b>
-            <%= @project.tag %>
+            <%= raw @project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
           </p>
           <p>
             <b>Link:</b>
@@ -52,7 +52,8 @@
           <% @comments.each do |comment| %>
             <div class="container" class="row">
               <%= UserProfile.where( user_id: comment.user_id ).first.last_name %>:
-              <%= comment.content %> 
+              <%= comment.content %>
+              <%= comment.created_at %>
             </div>
           <% end %>
           <%= will_paginate @comments %>
