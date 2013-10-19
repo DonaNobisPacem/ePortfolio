@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'acts-as-taggable-on'
 gem 'font-awesome-sass-rails'
 gem 'sunspot_rails'
+gem 'google-code-prettify-rails'
 
 
 # To use ActiveModel has_secure_password
