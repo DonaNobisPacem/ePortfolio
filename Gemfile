@@ -33,6 +33,9 @@ gem 'omniauth-gplus'
 gem 'omniauth-twitter'
 gem 'simple_form'
 gem 'acts-as-taggable-on'
+gem 'font-awesome-sass-rails'
+gem 'sunspot_rails'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

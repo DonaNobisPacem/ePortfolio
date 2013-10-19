@@ -1,43 +1,95 @@
-<%= link_to "Home", root_path, :class => 'brand' %>
-<ul class="nav">
-  <% if user_signed_in? %>
 
+ <link href="/static/bootstrap/css/bootstrap.min.scss" rel="stylesheet" media="screen">
+ <link href="/static/bootstrap/css/font-awesome.min.scss" rel="stylesheet">
+ <link href="/static/bootstrap/docs/assets/css/docs.scss" rel="stylesheet">
+ <link href="/static/bootstrap/docs/assets/js/google-code-prettify/prettify.scss" rel="stylesheet">
 
-    <li>
-    <%= link_to('Create Project', new_project_path) %>
-    </li>
+ <link rel="stylesheet" href="/assets/css/site.scss">
+ <link rel="stylesheet" href="/assets/css/prettify.scss">
+ <link rel="stylesheet" href="/assets/css/font-awesome.scss">
 
-    <li>
-    <%= link_to('Help', help_path) %>
-    </li>
-    <li>
-    <%= link_to('Edit account', edit_user_registration_path) %>
-    </li>
-    <li>
-    <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>
-    </li>
+<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner" >
+			<style type="text/css">
+				.navbar .navbar-inner {
+				border-bottom: 1px solid #014421;
+				-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+				-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+				box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+				}
+				.navbar-inner {
+				background-color: #014421;
+				background-image: linear-gradient(to bottom, #009b4a, #014421);
+				background-repeat: no-repeat;
+				filter: none;
+				}
+				.navbar .brand {
+				float: left;
+				display: block;
+				padding: 9.5px 20px 9.5px;
+				margin-left: -10px;
+				font-size: 20px;
+				font-weight: 200;
+				color: #d8d8d8;
+				text-shadow: 0 1px 0 #000000;
+				}
+				.navbar .brand:hover {
+				float: left;
+				display: block;
+				padding: 9.5px 20px 9.5px;
+				margin-left: -10px;
+				font-size: 20px;
+				font-weight: 200;
+				color: #ffffff;
+				text-shadow: 0 1px 0 #000000;
+				}
+				.navbar .nav>li>a {
+				float: none;
+				padding: 9.5px 15px 9.5px;
+				color: #d8d8d8;
+				text-decoration: none;
+				text-shadow: 0 1px 0 #000000;
+				}
+				.navbar .nav>li>a:hover {
+				float: none;
+				padding: 9.5px 15px 9.5px;
+				color: #ffffff;
+				text-decoration: none;
+				text-shadow: 0 1px 0 #000000;
+				}
+			</style>
+			  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </a>
+			  <a class="brand" href="/">ePortfolio</a>
+			  <div class="nav-collapse">
+				<ul class="nav pull-left">
+					<%= link_to "Home", root_path, :class => 'brand' %>
+					<% if user_signed_in? %>
+						<div class="container">
+						<li class=""><i class="icon-book"></i><%= link_to('Projects', projects_path ) %></li>
+						</div>
+						<li class=""><i class="icon-book"></i><%= link_to('Create Project', new_project_path) %></li>
+						<li class=""><i class="icon-group"></i><%= link_to('Users', users_path ) %></li>
+						<li class=""><i class="icon-pencil"></i><%= link_to('Edit account', edit_user_registration_path) %></li>
+						<li class=""><i class="icon-question-sign"></i><%= link_to('Help', help_path) %></li>
+						<li class=""><i class="icon-signout"></i><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
     
-    <li>
-    <%= link_to('Users', users_path ) %>
-    </li>
+						<div class="input-prepend">
+							<span class="add-on">
+								<i class="icon-search"></i>
+							</span>
+							<input name="url" type="text" class="span2" placeholder="Search">
+						</div>
     
-    <li>
-    <%= link_to('Projects', projects_path ) %>
-    </li>
-    
-    <div class="input-prepend">
-        <span class="add-on">
-          <i class="icon-search"></i>
-        </span>
-        <input name="url" type="text" class="span2" placeholder="Search">
+					<% else %>
+						<div class = 'container'><li class=""><i class="icon-home"></i><%= link_to('Login', new_user_session_path)  %></li></div>
+						
+						<li class=""><i class="icon-home"></i><%= link_to('Sign up', new_user_registration_path)  %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
     </div>
-    
-  <% else %>
-    <li>
-    <%= link_to('Login', new_user_session_path)  %>
-    </li>
-    <li>
-    <%= link_to('Sign up', new_user_registration_path)  %>
-    </li>
-  <% end %>
-</ul>
