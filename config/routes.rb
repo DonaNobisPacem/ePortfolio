@@ -7,6 +7,11 @@ EPortfolio::Application.routes.draw do
     resources :project_comments
   end
 
+  resources :friends, :controller => 'friendships', :except => [:show, :edit] do
+    get "requests", :on => :collection
+    get "invites", :on => :collection
+  end
+
   resources :users
 
   match '/help', :to => 'help#index'

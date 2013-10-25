@@ -8,8 +8,10 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@current_user = current_user
   		@user = User.find params[:id]
   		@user_profile = UserProfile.where( :user_id => @user.id ).first
+  		@friends = @user.friends
   	end
 	
 	def create

@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :omniauthable, :omniauth_providers => [:facebook, :twitter]
+
+  include Amistad::FriendModel
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :user_profile_attributes
@@ -40,6 +42,19 @@ class User < ActiveRecord::Base
                          :provider => provider,
                          :uid => uid,
                          :email => email,
+                         :password => Devise.friendly_token[0,20]
+                         )
+
+      end
+      return user
+  end
+
+  def self.find_for_twitter_oauth(provider, uid, name, signed_in_resource=nil)
+    user = User.where(:email => email).first
+    unless user
+        user = User.create(:name => name,
+                         :provider => provider,
+                         :uid => uid,
                          :password => Devise.friendly_token[0,20]
                          )
 

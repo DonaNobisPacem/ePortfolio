@@ -10,9 +10,7 @@
 				<ul class="nav pull-left">
 					<%= link_to "Home", root_path, :class => 'brand' %>
 					<% if user_signed_in? %>
-						<div class="container">
 						<li class=""><i class="icon-book"></i><%= link_to('Projects', projects_path ) %></li>
-						</div>
 						<li class=""><i class="icon-book"></i><%= link_to('Create Project', new_project_path) %></li>
 						<li class=""><i class="icon-group"></i><%= link_to('Users', users_path ) %></li>
 						<li class=""><i class="icon-pencil"></i><%= link_to('Edit account', edit_user_registration_path) %></li>
@@ -25,10 +23,20 @@
 							</span>
 							<input name="url" type="text" class="span2" placeholder="Search">
 						</div>
-    
 					<% else %>
-						<li class=""><i class="icon-signin"></i><%= link_to('Login', new_user_session_path)  %></li>
-						
+						<li class="">
+							<%= link_to new_user_session_path do %>
+								<i class="icon-signin"></i>
+								Login
+								<% end %>
+						</li>
+						<li class="">
+							<%= link_to user_omniauth_authorize_path(:facebook) do %>
+							<%= fa_icon "facebook" %>
+							Login with Facebook
+							<% end %>
+						</li>
+						<li class=""><i class="icon-signin"></i><%= link_to('Login with twitter', user_omniauth_authorize_path(:twitter) )  %></li>
 						<li class=""><i class="icon-signup"></i><%= link_to('Sign up', new_user_registration_path)  %></li>
 					<% end %>
 				</ul>

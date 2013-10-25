@@ -34,7 +34,9 @@ gem 'omniauth-twitter'
 gem 'simple_form'
 gem 'acts-as-taggable-on'
 gem 'font-awesome-rails'
+gem 'amistad'
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem 'google-code-prettify-rails'
 
 
