@@ -1,4 +1,4 @@
 class UserProfile < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :user_id
+  attr_accessible :name, :gender, :user_id
   belongs_to :user
 end

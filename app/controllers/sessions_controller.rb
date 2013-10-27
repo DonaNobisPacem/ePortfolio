@@ -11,16 +11,15 @@ class SessionsController < ApplicationController
 		      redirect_back_or role_control_panel
 		  elsif user && user.authenticate(params[:session][:password])  && user.hidden != true && !user.account_enabled  
 		  	flash.now[:error] = 'Account not yet activated/approved. Please make sure you have verified this account so a system administrator can activate/approve it.'
-		  	render 'new'
+		  	redirect_to root_url
 		  else
 		  	flash.now[:error] = 'Invalid email/password combination'
-		  	render 'new'
+		  	redirect_to root_url
 		  end
 	end
 
 	def destroy
 		sign_out
-		flash[:success] = "Successfully signed out."
 	    redirect_to signin_url #root_url
 	end
 end

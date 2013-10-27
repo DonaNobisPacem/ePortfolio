@@ -8,10 +8,4 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :project_comments
   acts_as_taggable_on :tag
 
-  searchable do
-  	text :title
-  	text :description
-  	text :contributor
-  end
-
 end

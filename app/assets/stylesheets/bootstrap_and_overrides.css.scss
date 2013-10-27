@@ -5,48 +5,58 @@ body { padding-top: 60px; }
 
 
 .navbar .navbar-inner {
-border-bottom: 1px solid #014421;
--webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
--moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.navbar-inner {
-background-color: #014421;
-background-image: linear-gradient(to bottom, #009b4a, #014421);
-background-repeat: no-repeat;
-filter: none;
-}
-.navbar .brand {
-float: left;
-display: block;
-padding: 9.5px 20px 9.5px;
-margin-left: -10px;
-font-size: 20px;
-font-weight: 200;
-color: #d8d8d8;
-text-shadow: 0 1px 0 #000000;
-}
-.navbar .brand:hover {
-float: left;
-display: block;
-padding: 9.5px 20px 9.5px;
-margin-left: -10px;
-font-size: 20px;
-font-weight: 200;
-color: #ffffff;
-text-shadow: 0 1px 0 #000000;
-}
-.navbar .nav>li>a {
-float: none;
-padding: 15px 20px 15px;
-color: #d8d8d8;
-text-decoration: none;
-text-shadow: 0 1px 0 #000000;
-}
-.navbar .nav>li>a:hover {
-float: none;
-padding: 9.5px 15px 9.5px;
-color: #ffffff;
-text-decoration: none;
-text-shadow: 0 1px 0 #000000;
-}
+	  border-bottom: 1px solid #014421;
+	  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+	  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+	  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+	}
+
+	.navbar-inner {
+	  background-color: #014421;
+	  background-image: linear-gradient(to bottom, #009b4a, #014421);
+	  background-repeat: no-repeat;
+	  filter: none;
+	}
+
+	.navbar .brand {
+	  float: left;
+	  display: block;
+	  padding: 9.5px 20px 9.5px;
+	  margin-left: -10px;
+	  font-size: 20px;
+	  font-weight: 200;
+	  color: #d8d8d8;
+	  text-shadow: 0 1px 0 #000000;
+	}
+
+	.navbar .brand:hover {
+	  float: left;
+	  display: block;
+	  padding: 9.5px 20px 9.5px;
+	  margin-left: -10px;
+	  font-size: 20px;
+	  font-weight: 200;
+	  color: #ffffff;
+	  text-shadow: 0 1px 0 #000000;
+	}
+
+	.navbar .nav>li>a {
+	  float: none;
+	  padding: 9.5px 15px 9.5px;
+	  color: #d8d8d8;
+	  text-decoration: none;
+	  text-shadow: 0 1px 0 #000000;
+	}
+
+	.navbar .nav>li>a:hover {
+	  float: none;
+	  padding: 9.5px 15px 9.5px;
+	  color: #ffffff;
+	  text-decoration: none;
+	  text-shadow: 0 1px 0 #000000;
+	}
+
+	.navbar .nav .active > a, .navbar .nav .active > a:hover {
+	  background-color: #e6fae1;
+	  color: #015629;
+	}

@@ -4,16 +4,14 @@
 		<tr>
 			<th>Username</th>
 			<th>Email</th>
-			<th>First Name</th>
-			<th>Last Name</th>
+			<th>Name</th>
 		</tr>
 		<% @users.each do |user| %>
 			<tr>
 				<td class="span2" style="word-wrap:break-word"> <%= link_to user.username, user %> </td>
 				<td class="span3" style="word-wrap:break-word"> <%= user.email%> </td>
 				<% @user_profile = UserProfile.where( user_id: user.id ).first %>
-				<td class="span1" style="word-wrap:break-word"> <%= @user_profile.first_name %> </td>       
-				<td class="span1" style="word-wrap:break-word"> <%= @user_profile.last_name %></td>
+				<td class="span1" style="word-wrap:break-word"> <%= @user_profile.name %> </td>   
 			</tr>
 		<% end %>
 	</table>

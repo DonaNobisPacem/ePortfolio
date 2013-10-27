@@ -4,11 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "S&M ePortfolio" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Bootstrap" %>">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <% unless @disable_nav %>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">
@@ -16,6 +19,20 @@
         </div>
       </nav>
     </header>
+    <% end %>
+
+    <% if user_signed_in? %>
+    <body style="padding-top: 40px; padding-bottom: 0px;">
+    <% else %>
+    <body style="padding-top: 0px; padding-bottom: 0px;">
+    <% end %>
+
+      <div class="jumbotron" style="background-color: #e6fae1; padding-top: 10px; padding-bottom: 0px; border-bottom: 2px solid black">
+        <div class="container" align="center">
+          <%= image_tag "logo.png", :style => "margin-bottom: 1%" %>
+        </div>
+      </div>
+
     <main role="main">
       <div class="container">
         <div class="content">
@@ -25,10 +42,50 @@
               <%= yield %>
             </div>
           </div>
-          <footer>
-          </footer>
+          <footer align="center" style="background-color: #e6fae1; color: #015629; margin-top: 0px; border-top-width: 2px; border-top-color: black">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <h2>About Us</h2>
+            <p>
+              ePortfolio is a Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+            </p>
+          </div>
+
+          <div class="span4">
+            <h2>Contact Us</h2>
+            <ul class="icons">
+              <li><i class="icon-globe"></i> Website: <a href="http://ws.dcs.upd.edu.ph/" style="color: #000000" target="_blank"><b>WSG</b></a></li>
+              <li><i class="icon-facebook-sign"></i> Facebook: <a href="https://www.facebook.com/pages/Web-Science-Group/150535988306252" style="color: #000000" target="_blank"><b>WSG</b></a></li>
+              <li><i class="icon-twitter"></i> Twitter: <a href="https://twitter.com/rom" style="color: #000000" target="_blank"><b>@rom</b></a></li>
+              <li><i class="icon-bolt"></i> <i class="icon-remove"></i><%= image_tag 'space.png' %><i class="icon-group"></i>: <a href="https://www.facebook.com/stormalmalvez" style="color: #000000" target="_blank"><b>S</b></a> & <a href="https://www.facebook.com/johnthomasraphael" style="color: #000000" target="_blank"><b>M</b></a></li>
+            </ul>
+          </div>
+
+          <div class="span4">
+            <ul class="icons">
+              <li style="padding-top: 10px">
+              <%= image_tag 'wsg.gif' %>
+              </li>
+
+              <li style="padding-top: 10px">
+                <p>
+                  ePortfolio
+                  <%= image_tag 'space.png', :style => "width: 1.7%" %><%= image_tag 'copyright.gif' %><%= image_tag 'space.png', :style => "width: 1.3%" %> 2013
+                  <br>Powered by <a href="https://www.ruby-lang.org/en/" style="color: #000000" target="_blank">
+                  <%= image_tag 'ruby.png' %></a>
+                  and <a href="http://getbootstrap.com/" style="color: #000000" target="_blank">
+                  <%= image_tag 'bootstrap.png' %></a>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div><!--/.row -->
+      </div><!--/.container -->
+    </footer>
         </div>
       </div>
     </main>
   </body>
+
 </html>

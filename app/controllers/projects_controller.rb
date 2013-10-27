@@ -2,16 +2,10 @@ class ProjectsController < ApplicationController
 	before_filter :authenticate_user!
 
   	def index
+      @user = current_user
       if params[:tag]
         @projects = Project.tagged_with( params[:tag] ).paginate(page: params[:page], per_page: 10 )
         flash[:notice] = "tag"
-      elsif params[:search]
-          @query = params[:search]
-          @search = Project.search do
-            fulltext params[:search]
-          end
-          @projects = @search.results
-          flash[:notice] = @search.results
       else
         @projects = Project.paginate(page: params[:page], per_page: 10 )
         flash[:notice] = "def"
@@ -25,6 +19,7 @@ class ProjectsController < ApplicationController
   	end
   	
   	def new
+      @user = current_user
   		@project = Project.new
   	end
 
