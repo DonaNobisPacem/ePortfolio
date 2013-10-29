@@ -1,69 +1,79 @@
 <% provide(:title, 'ePortfolio') %>
 
 <% if user_signed_in? %>
-  
-  
-	<table class="table table-striped table-bordered">
-		<tr>
-			<th>Title</th>
-			<th>Contributor</th>
-			<th>Description</th>
-			<th>Tags</th>
-		</tr>
-		<% @projects.each do |project| %>
-			<tr>
-				<td class="span2" style="word-wrap:break-word"> <%= link_to project.title, project %> </td>
-				<td class="span3" style="word-wrap:break-word"> <%= User.find(current_user.id).username %> </td>
-				<td class="span1" style="word-wrap:break-word"> <%= project.description %> </td>       
-				<td class="span1" style="word-wrap:break-word"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
-			</tr>
-		<% end %>
-	</table>
-	<%= will_paginate @projects %>
-	<%= link_to 'Create Project', new_project_path, class: "btn btn-large btn-primary" %>
+
+
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th>Title</th>
+      <th>Contributor</th>
+      <th>Description</th>
+      <th>Tags</th>
+    </tr>
+    <% @projects.each do |project| %>
+      <tr>
+        <td class="span2" style="word-wrap:break-word"> <%= link_to project.title, project %> </td>
+        <td class="span3" style="word-wrap:break-word">
+          <% @contributor = project.contributor.split(', ') %>
+          <% @contributor.each do |cont| %>
+            <% @contrib_profile = UserProfile.where("name LIKE ?", "%#{cont}%").first %>
+            <li><%= link_to @contrib_profile.name, User.where(:id => @contrib_profile.user_id).first %></li>
+          <% end %>
+        </td>
+        <td class="span1" style="word-wrap:break-word"> <%= project.description %> </td>
+        <td class="span1" style="word-wrap:break-word"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @projects %>
+  <%= link_to 'Create Project', new_project_path, class: "btn btn-large btn-primary" %>
 
 <% else %>
 
   <div class="container-fluid" style="background-color: #015629; padding-top: 3%; padding-bottom: 5%;">
       <div class="row-fluid">
         <div class="span3" style="margin-left: 5%; margin-right: 4%;">
+
           <br><br><br><br><br>
-        
+
           <div class="well sidebar-nav" style="background-color: #e6fae1">
-            <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :align => "center", :namespace => 'signin' ) do |f| %>
-            <br>
-            <div class="input-prepend">
-              <span class="add-on"><i class="icon-user"></i></span>
-              <%= f.text_field :login, :required => false, :autofocus => true, :class => "input-medium", :placeholder => "Username or Email" %>
-            </div>
+            <div align="center" style="color: #55AB55">
+              <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :namespace => 'signin' ) do |f| %>
 
-            <div class="input-prepend">
-              <span class="add-on"><i class="icon-lock"></i></span>
-              <%= f.password_field :password, :class => "input-medium", :placeholder => "Password" %>
-            </div>
+              <br>
 
-            <div class="btn-toolbar">
-              <div class="row-fluid">
-                <div class="span12">
-                  <%= button_tag :type => "submit", :class => "btn btn-success" do %>
-                    <i class="icon-signin"></i>
-                    Login
-                  <% end %>
-                  <%= image_tag "space.png "%>
-                  <a data-toggle="modal" href="#myModal">
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-user"></i></span>
+                <%= f.text_field :login, :required => false, :autofocus => true, :class => "input-medium", :placeholder => "Username or Email" %>
+              </div>
+
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-lock"></i></span>
+                <%= f.password_field :password, :class => "input-medium", :placeholder => "Password" %>
+              </div>
+
+              <div class="btn-toolbar">
+                <div class="row-fluid">
+                  <div class="span12">
                     <%= button_tag :type => "submit", :class => "btn btn-success" do %>
-                      <i class="icon-pencil"></i>
-                      Sign Up
+                      <i class="icon-signin"></i>
+                      Login
                     <% end %>
-                  </a>
+                    <%= image_tag "space.png "%>
+                    <a data-toggle="modal" href="#myModal">
+                      <%= button_tag :type => "submit", :class => "btn btn-success" do %>
+                        <i class="icon-pencil"></i>
+                        Sign Up
+                      <% end %>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
             <% end %>
 
-            <div id="myModal" class="well modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color: #e6fae1; width: 35%">
-              <div class="modal-dialog">
-                <div class="modal-content">
+              <div id="myModal" class="well modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color: #e6fae1; width: 35%">
+                <div class="modal-dialog">
+                  <div class="modal-content">
                     <div class="modal-header"style="margin-bottom: -4%; border: none">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         <i class="icon-remove" style="color: black"></i>
@@ -75,16 +85,16 @@
                       <% resource.build_user_profile %>
                       <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :namespace => 'signup') do |g| %>
 
-                        <%= g.input :username, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Username" %>
-                        <%= g.input :email, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Email" %>
-                        <%= g.input :password, :required => true, :class => "input-medium", :placeholder => "Password" %>
-                        <%= g.input :password_confirmation, :required => true, :class => "input-medium", :placeholder => "Re-enter password" %>
+                        <%= g.text_field :username, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Username", :label => false %>
+                        <%= g.text_field :email, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Email", :label => false %>
+                        <%= g.input :password, :required => true, :class => "input-medium", :placeholder => "Password", :label => false %>
+                        <%= g.input :password_confirmation, :required => true, :class => "input-medium", :placeholder => "Re-enter password", :label => false %>
 
                         <%= g.fields_for :user_profile do |profile| %>
-                          <%= profile.input :name, :required => true, :class => "input-medium", :placeholder => "Name" %>
+                          <%= profile.input :name, :required => true, :class => "input-medium", :placeholder => "Name", :label => false %>
                           <%= image_tag 'gender.png' %>
-                          <%= profile.radio_button :gender, '0' %> <%= image_tag 'female.png' %>  
-                          <%= profile.radio_button :gender, '1' %> <%= image_tag 'male.png' %>           
+                          <%= profile.radio_button :gender, '0' %> <%= image_tag 'female.png' %>
+                          <%= profile.radio_button :gender, '1' %> <%= image_tag 'male.png' %>
                         <% end %>
 
                         <br>
@@ -95,16 +105,17 @@
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-          </div>
-        </div>
+              </div><!-- /.modal -->
+            </div><!-- /.align-center -->
+          </div><!-- /.well-sidebar-nav -->
+        </div><!-- /.span3 -->
 
         <p class="template_body">
           <div class="span3" style="width: 62%; margin-left: 0.010%;">
             <div class="hero-unit" style="background-color: #e6fae1">
               <div id="myCarousel" class="carousel slide">
                 <div class="carousel-inner">
-                  <div class="item active"><!-- <img src="assets/img/cs1.jpg" alt="First slide"> -->
+                  <div class="item active"><!--<img src="assets/img/cs1.jpg" alt="First slide">-->
                     <%= image_tag 'cs1.jpg', :alt => "First slide" %>
                     <div class="carousel-caption">
                       <h4>ePortfolio in the comfort of your own home</h4>
@@ -137,7 +148,5 @@
         </p>
       </div><!-- /rowfluid -->
     </div><!-- /containerfluid -->
-  </body>
 
-    
 <% end %>

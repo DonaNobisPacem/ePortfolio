@@ -67,6 +67,7 @@ GEM
     hike (1.2.3)
     httpauth (0.2.0)
     i18n (0.6.5)
+    innertube (1.1.0)
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -78,9 +79,11 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    middleware (0.1.0)
     mime-types (1.25)
     multi_json (1.7.9)
     multipart-post (1.2.0)
+    mysql2 (0.3.13)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -133,6 +136,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    riddle (1.5.9)
     sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -156,6 +160,12 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
+    thinking-sphinx (3.0.6)
+      activerecord (>= 3.1.0)
+      builder (>= 2.1.2)
+      innertube (>= 1.0.2)
+      middleware (>= 0.1.0)
+      riddle (>= 1.5.9)
     thor (0.18.1)
     tilt (1.4.1)
     treetop (1.4.15)
@@ -168,6 +178,7 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     will_paginate (3.0.3)
+    yaml_db (0.2.3)
 
 PLATFORMS
   ruby
@@ -184,6 +195,7 @@ DEPENDENCIES
   font-awesome-rails
   google-code-prettify-rails
   jquery-rails
+  mysql2 (= 0.3.13)
   omniauth
   omniauth-facebook
   omniauth-gplus
@@ -193,5 +205,7 @@ DEPENDENCIES
   simple_form
   sqlite3
   thin
+  thinking-sphinx (= 3.0.6)
   uglifier (>= 1.0.3)
   will_paginate (= 3.0.3)
+  yaml_db

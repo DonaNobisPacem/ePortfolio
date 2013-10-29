@@ -20,7 +20,11 @@
           </h3>
           <p>
             <b>Contributors:</b>
-            <%= @project.contributor%>
+            <% @contributor = @project.contributor.split(', ') %>
+            <% @contributor.each do |cont| %>
+            <% @contrib_profile = UserProfile.where("name LIKE ?", "%#{cont}%").first %>
+            <li><%= link_to @contrib_profile.name, User.where(:id => @contrib_profile.user_id).first %></li>
+          <% end %>
           </p>
           <p>
             <b>Description</b>
@@ -33,7 +37,7 @@
           </p>
           <p>
             <b>Link:</b>
-            <%= @project.link %>
+            <%= link_to @project.link, url_with_protocol(@project.link), :target => '_blank' %>
           </p>
           <p>
             <b>Link Type:</b>

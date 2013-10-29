@@ -1,6 +1,6 @@
 EPortfolio::Application.routes.draw do
   root :to => 'home#index'
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 
   get 'tag/:tag', to: 'projects#index', as: :tag
   resources :projects do
@@ -13,6 +13,8 @@ EPortfolio::Application.routes.draw do
   end
 
   resources :users
+
+  match '/search', :to => "search#index"
 
   match '/help', :to => 'help#index'
   match '/users', :to => 'users#index'

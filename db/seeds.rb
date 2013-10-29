@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+###
+### Users
+###
+
 params =
 {  
 	:user =>
@@ -107,3 +112,72 @@ params =
 	}
 }
 User.create!(params[:user])
+
+###
+### Projects ######################################################
+###
+
+params =
+{  
+	:project =>
+	{
+		:title => 'test project 1',
+	    :description => 'test description 1 alpha beta gamma',
+	    :contributor => 'John Thomas Raphael Dulay, Test User the 1st, Test User the 2nd',
+	    :link => 'www.google.com',
+	    :tag_list => 'tag1, tag2, tag3'
+	}
+}
+Project.create!(params[:project])
+
+params =
+{  
+	:project =>
+	{
+		:title => 'test project 2',
+	    :description => 'test description 2 delta omega lamda',
+	    :contributor => 'John Thomas Raphael Dulay, Test User the 3rd, Test User the 2nd',
+	    :link => 'www.google.com',
+	    :tag_list => 'tag4, tag2, tag3'
+	}
+}
+Project.create!(params[:project])
+
+params =
+{  
+	:project =>
+	{
+		:title => 'test project 3',
+	    :description => 'test description 3 lambda theta phi',
+	    :contributor => 'Test User the 5th, Test User the 1st, Test User the 2nd',
+	    :link => 'www.google.com',
+	    :tag_list => 'tag1, tag4, tag5'
+	}
+}
+Project.create!(params[:project])
+
+params =
+{  
+	:project =>
+	{
+		:title => 'test project 4',
+	    :description => 'test description 4 alpha lambda omega',
+	    :contributor => 'John Thomas Raphael Dulay, Test User the 4th, Test User the 5th',
+	    :link => 'www.google.com',
+	    :tag_list => 'tag4, tag2, tag3'
+	}
+}
+Project.create!(params[:project])
+
+params =
+{  
+	:project =>
+	{
+		:title => 'test project 5',
+	    :description => 'test description 5 omega phi gamma',
+	    :contributor => 'Test User the 3rd, Test User the 1st, Test User the 2nd',
+	    :link => 'www.google.com',
+	    :tag_list => 'tag1, tag4, tag5'
+	}
+}
+Project.create!(params[:project])

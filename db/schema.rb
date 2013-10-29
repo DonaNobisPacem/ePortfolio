@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131027133958) do
+ActiveRecord::Schema.define(:version => 20131029103638) do
+
+  create_table "achievements", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "comments", :force => true do |t|
     t.integer  "project_id"
@@ -24,6 +31,24 @@ ActiveRecord::Schema.define(:version => 20131027133958) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "contacts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "address"
+  end
+
+  create_table "educations", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "school"
+  end
+
+  create_table "emails", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "friendships", :force => true do |t|
     t.integer "friendable_id"
     t.integer "friend_id"
@@ -32,6 +57,18 @@ ActiveRecord::Schema.define(:version => 20131027133958) do
   end
 
   add_index "friendships", ["friendable_id", "friend_id"], :name => "index_friendships_on_friendable_id_and_friend_id", :unique => true
+
+  create_table "languages", :force => true do |t|
+    t.string   "language"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "phones", :force => true do |t|
+    t.string   "phone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "project_comments", :force => true do |t|
     t.integer  "project_id"
@@ -89,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20131027133958) do
     t.datetime "updated_at", :null => false
     t.string   "name"
     t.integer  "gender"
+    t.datetime "birthday"
   end
 
   create_table "user_projects", :force => true do |t|
@@ -120,5 +158,12 @@ ActiveRecord::Schema.define(:version => 20131027133958) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "work_experiences", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end

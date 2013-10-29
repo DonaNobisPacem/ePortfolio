@@ -36,6 +36,9 @@ gem 'acts-as-taggable-on'
 gem 'font-awesome-rails'
 gem 'amistad'
 gem 'google-code-prettify-rails'
+gem 'mysql2', '0.3.13'
+gem 'thinking-sphinx', '3.0.6'
+gem 'yaml_db'
 
 
 # To use ActiveModel has_secure_password

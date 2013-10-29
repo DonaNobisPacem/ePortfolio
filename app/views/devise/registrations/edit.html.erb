@@ -1,9 +1,11 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+<% resource.build_user_profile %>
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <h2>User Account</h2>
     <%= f.input :email, :required => true, :autofocus => true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -14,6 +16,11 @@
     <%= f.input :password_confirmation, :required => false %>
     <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
   </div>
+
+  <h2>Basic Information</h2>
+  <%= f.fields_for :user_profile do |profile| %>
+    <%= profile.input :name %>
+      
 
   <div class="form-actions">
     <%= f.button :submit, "Update" %>

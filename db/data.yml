@@ -1,0 +1,307 @@
+
+---
+projects:
+  columns:
+  - id
+  - title
+  - contributor
+  - description
+  - tag
+  - link
+  - link_type
+  - rating
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Test Project 1
+    - John Thomas Raphael Dulay
+    - Test Description 1
+    - 
+    - www.google.com
+    - 
+    - 
+    - '2013-10-28 08:19:56.379601'
+    - '2013-10-28 08:19:56.379601'
+
+---
+sessions:
+  columns:
+  - id
+  - session_id
+  - data
+  - created_at
+  - updated_at
+  records: 
+  - - 17
+    - 3392bff9fb372b18e1c5ac4b038a04b2
+    - ! 'BAh7B0kiCmZsYXNoBjoGRUZvOiVBY3Rpb25EaXNwYXRjaDo6Rmxhc2g6OkZs
+
+      YXNoSGFzaAk6CkB1c2VkbzoIU2V0BjoKQGhhc2h7BjoLbm90aWNlVDoMQGNs
+
+      b3NlZEY6DUBmbGFzaGVzewY7CkkiHVNpZ25lZCBvdXQgc3VjY2Vzc2Z1bGx5
+
+      LgY7AFQ6CUBub3cwSSIQX2NzcmZfdG9rZW4GOwBGSSIxZnc1dGJwTzNFSTdL
+
+      WFc3R2VRTldFakk5eVdKQy9vbUtqRW1aa1ZHRzJhWT0GOwBG
+
+'
+    - '2013-10-27 16:34:11.925997'
+    - '2013-10-27 16:34:12.070005'
+  - - 23
+    - f61f02f6307a37a25863812cbdd39b03
+    - ! 'BAh7B0kiGXdhcmRlbi51c2VyLnVzZXIua2V5BjoGRVRbB1sGaQZJIiIkMmEk
+
+      MTAkUlhGcEFMT3lNWEdWWTRkSklOWE15dQY7AFRJIhBfY3NyZl90b2tlbgY7
+
+      AEZJIjF0THF1Z3BhZ2tqbCtHbTVERGR1NXZoVXVSaU12MGd2aXE1MG15T0JW
+
+      bGhFPQY7AEY=
+
+'
+    - '2013-10-28 08:18:41.542321'
+    - '2013-10-28 08:20:59.226196'
+
+---
+taggings:
+  columns:
+  - id
+  - tag_id
+  - taggable_id
+  - taggable_type
+  - tagger_id
+  - tagger_type
+  - context
+  - created_at
+  records: 
+  - - 1
+    - 1
+    - 1
+    - Project
+    - 
+    - 
+    - tag
+    - '2013-10-28 08:19:56.646617'
+  - - 2
+    - 2
+    - 1
+    - Project
+    - 
+    - 
+    - tag
+    - '2013-10-28 08:19:56.650617'
+  - - 3
+    - 3
+    - 1
+    - Project
+    - 
+    - 
+    - tag
+    - '2013-10-28 08:19:56.652617'
+
+---
+tags:
+  columns:
+  - id
+  - name
+  records: 
+  - - 1
+    - Test
+  - - 2
+    - Project
+  - - 3
+    - ePortfolio
+
+---
+user_profiles:
+  columns:
+  - id
+  - user_id
+  - created_at
+  - updated_at
+  - name
+  - gender
+  records: 
+  - - 1
+    - 1
+    - '2013-10-27 14:04:07.295962'
+    - '2013-10-27 14:04:07.295962'
+    - John Thomas Raphael Dulay
+    - 1
+  - - 2
+    - 2
+    - '2013-10-27 14:04:07.393967'
+    - '2013-10-27 14:04:07.393967'
+    - Test User the 1st
+    - 1
+  - - 3
+    - 3
+    - '2013-10-27 14:04:07.492973'
+    - '2013-10-27 14:04:07.492973'
+    - Test User the 2nd
+    - 1
+  - - 4
+    - 4
+    - '2013-10-27 14:04:07.590978'
+    - '2013-10-27 14:04:07.590978'
+    - Test User the 3rd
+    - 1
+  - - 5
+    - 5
+    - '2013-10-27 14:04:07.689984'
+    - '2013-10-27 14:04:07.689984'
+    - Test User the 4th
+    - 0
+  - - 6
+    - 6
+    - '2013-10-27 14:04:07.802991'
+    - '2013-10-27 14:04:07.802991'
+    - Test User the 5th
+    - 0
+  - - 7
+    - 7
+    - '2013-10-27 14:11:17.568572'
+    - '2013-10-27 14:11:17.568572'
+    - Test User the 6th
+    - 0
+
+---
+users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  - username
+  - provider
+  - uid
+  - name
+  records: 
+  - - 1
+    - johnthomasraphael@yahoo.com
+    - $2a$10$RXFpALOyMXGVY4dJINXMyui2KjJtLg1SlNoQJQhZN2u0/03A5mBq2
+    - 
+    - 
+    - 
+    - 9
+    - '2013-10-28 08:18:41.330309'
+    - '2013-10-28 07:37:21.372463'
+    - 127.0.0.1
+    - 127.0.0.1
+    - '2013-10-27 14:04:07.270960'
+    - '2013-10-28 08:18:41.356310'
+    - donanobispacem
+    - 
+    - 
+    - 
+  - - 2
+    - testuser1@yahoo.com
+    - $2a$10$vstji8rscSnx0FdHvLTtPeWsnouBZd7ax6EgSv7qe90lxpeQq3WK6
+    - 
+    - 
+    - 
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - '2013-10-27 14:04:07.391967'
+    - '2013-10-27 14:04:07.391967'
+    - testuser1
+    - 
+    - 
+    - 
+  - - 3
+    - testuser2@yahoo.com
+    - $2a$10$R9Xkdywa5HkxwH1VTk08EOfvsng4VN56N7HbW3fvgHUUDH60.IHf.
+    - 
+    - 
+    - 
+    - 1
+    - '2013-10-27 14:56:25.283444'
+    - '2013-10-27 14:56:25.283444'
+    - 127.0.0.1
+    - 127.0.0.1
+    - '2013-10-27 14:04:07.490973'
+    - '2013-10-27 14:56:25.285444'
+    - testuser2
+    - 
+    - 
+    - 
+  - - 4
+    - testuser3@yahoo.com
+    - $2a$10$WP2/KBite7PY27PdnXlVduIm3Ab4a87jdp6Sb/Yn2.g0lXL5s/g9W
+    - 
+    - 
+    - 
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - '2013-10-27 14:04:07.588978'
+    - '2013-10-27 14:04:07.588978'
+    - testuser3
+    - 
+    - 
+    - 
+  - - 5
+    - testuser4@yahoo.com
+    - $2a$10$RlCySnq7xs67oEZL80XyUOfPNDoJst/pBhFyiEjjpIoUg3erWr7aa
+    - 
+    - 
+    - 
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - '2013-10-27 14:04:07.686984'
+    - '2013-10-27 14:04:07.686984'
+    - testuser4
+    - 
+    - 
+    - 
+  - - 6
+    - testuser5@yahoo.com
+    - $2a$10$JRH7eBxDkpvAyEwccl.1cugXym2cHVlAFyRR1K9OcNeMCZsNOj7oa
+    - 
+    - 
+    - 
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - '2013-10-27 14:04:07.798990'
+    - '2013-10-27 14:04:07.798990'
+    - testuser5
+    - 
+    - 
+    - 
+  - - 7
+    - testuser6@yahoo.com
+    - $2a$10$NOG1RTwRwR93/n.SKjMua.hFMjMHwYVMeajXkz9rjZvmLDgX2bjLa
+    - 
+    - 
+    - 
+    - 1
+    - '2013-10-27 14:11:17.580572'
+    - '2013-10-27 14:11:17.580572'
+    - 127.0.0.1
+    - 127.0.0.1
+    - '2013-10-27 14:11:17.565572'
+    - '2013-10-27 14:11:17.581572'
+    - testuser6
+    - 
+    - 
+    - 
