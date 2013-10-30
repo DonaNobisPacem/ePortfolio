@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
       @user = User.find(current_user.id)
-
+      
       successfully_updated = if needs_password?(@user, params)
         @user.update_with_password(params[:user])
       else
@@ -31,9 +31,8 @@ class RegistrationsController < Devise::RegistrationsController
       user.email != params[:user][:email] ||
         params[:user][:password].present?
     end
-  end
 
-
+    
   def create
     build_resource(sign_up_params)
 

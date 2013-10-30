@@ -1,7 +1,4 @@
 <% provide(:title, 'Project Details') %>
-<head>
-  <script type="text/javascript" src="assets/twitterbootstrap/js/bootstrap-tab.js"></script>
-</head>
 
 <h2>Project Details</h2>
 
@@ -45,7 +42,7 @@
           </p>
           <p>
             <b>Rating:</b>
-            <%= @project.rating %>
+            <%= rating_for @project, "quality" %>
           </p>
         </div>
       </div>

@@ -2,7 +2,9 @@
 
 <% if user_signed_in? %>
 
-
+  
+    <%= link_to('Edit account', edit_user_registration_path) %>
+    
   <table class="table table-striped table-bordered">
     <tr>
       <th>Title</th>

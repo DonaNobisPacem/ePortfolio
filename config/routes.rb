@@ -1,4 +1,6 @@
 EPortfolio::Application.routes.draw do
+  match '/rate' => 'rater#create', :as => 'rate'
+
   root :to => 'home#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 

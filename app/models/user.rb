@@ -10,16 +10,21 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :user_profile_attributes
-  attr_accessible :login, :provider, :uid, :name
+  attr_accessible :login, :provider, :uid, :name, :user_auths_attributes
   # attr_accessible :title, :body
   attr_accessor :login
+
+  has_many :user_auths, :dependent => :destroy
+  accepts_nested_attributes_for :user_auths
 
   has_many :user_projects
   has_many :projects, :through => :user_projects
   accepts_nested_attributes_for :projects
   
-  has_one :user_profile
+  has_one :user_profile, :dependent => :destroy
   accepts_nested_attributes_for :user_profile
+
+  letsrate_rater
 
   validates :username,
   :uniqueness => {
@@ -35,16 +40,28 @@ class User < ActiveRecord::Base
       end
   end
 
-  def self.find_for_facebook_oauth(provider, uid, name, email, signed_in_resource=nil)
-    user = User.where(:email => email).first
+  def self.find_for_facebook_oauth( data, signed_in_resource=nil)
+    user = User.where(:email => data.info.email).first
     unless user
-        user = User.create(:name => name,
-                         :provider => provider,
-                         :uid => uid,
-                         :email => email,
-                         :password => Devise.friendly_token[0,20]
-                         )
-
+      params =
+        {  
+          :user =>
+          {
+            :username => data.uid,
+            :email => data.info.email,
+            :password => Devise.friendly_token[0,20],
+            :user_profile_attributes => 
+              {
+                :name => data.extra.raw_info.name,
+                },
+            :user_auths_attributes =>
+            {
+              :uid => data.uid,
+              :provider => data.provider,
+            }
+          }
+        }
+        user = User.create!(params[:user])
       end
       return user
   end

@@ -1,7 +1,9 @@
 <% provide(:title, 'User Profile') %>
+<div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
+    <div class="hero-unit offset4" style="background-color: #e6fae1; width: 40%" align="center">
+
 <h2>User Profile</h2>
-<div class="row">
-  <div class="span6">
+	<%= image_tag @user_profile.image_url(:thumb).to_s%>
     <p id="notice"> <%= notice %> </p>
     <% if @current_user != @user %>
 	    <% if @current_user.friend_with? @user %>
@@ -26,7 +28,7 @@
     	<% end %>
 
 	</table>
-	<% end %> 
+	<% end %>
     <h3>
       <!--<b>Title:</b> Use this instead for header-->
       <%= @user_profile.name %>
@@ -34,7 +36,7 @@
     Friend List:
 
     <table class="table table-striped table-bordered">
-    
+
 		<tr>
 			<th>Username</th>
 		</tr>
@@ -45,5 +47,11 @@
     <% end %>
 
 	</table>
+	<b>Educ:</b>
+	<% @education = Education.where( :user_profile_id => @user_profile.id ) %>
+	<% @education.each do |educ| %>
+		<%= educ.school %>
+	<%end%>
 
-</div>
+</div><!-- /hero-unit-->
+  </div><!-- /containerfluid -->

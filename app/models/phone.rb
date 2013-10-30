@@ -1,3 +1,4 @@
 class Phone < ActiveRecord::Base
-  attr_accessible :phone
+	belongs_to :contact
+  attr_accessible :phone, :contact_id
 end

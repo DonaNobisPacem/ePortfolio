@@ -8,8 +8,5 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :project_comments
   acts_as_taggable_on :tag
 
-  def parse_contributors( contributor_list ) 
-  	parsed_list = contributor_list.split(',')
-  end
-
+  letsrate_rateable "quality"
 end

@@ -1,30 +1,117 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<% resource.build_user_profile %>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<% resource.build_user_profile if resource.user_profile.nil? %>
+<%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put , :multipart => true }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <h2>User Account</h2>
-    <%= f.input :email, :required => true, :autofocus => true %>
+  <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
-    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
-  </div>
-
-  <h2>Basic Information</h2>
   <%= f.fields_for :user_profile do |profile| %>
-    <%= profile.input :name %>
-      
+
+  <div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#account" data-toggle="tab">User Account</a></li>
+      <li><a href="#info" data-toggle="tab">Basic Info</a></li>
+      <li><a href="#contact" data-toggle="tab">Contact Info</a></li>
+      <li><a href="#education" data-toggle="tab">Education</a></li>
+      <li><a href="#work" data-toggle="tab">Work Experience</a></li>
+      <li><a href="#achievement" data-toggle="tab">Achievements</a></li>
+      <li><a href="#lang" data-toggle="tab">Languages</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="account">
+        <div class="row">
+          <div class="span6">
+            <%= f.input :email, :required => true, :autofocus => true %>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+            <% end %>
+
+            <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+            <%= f.input :password_confirmation, :required => false %>
+          </div> <!-- span6 -->
+        </div> <!-- row -->
+      </div> <!-- tab-pane -->
+
+        <div class="tab-pane" id="info">
+          <%= profile.input :name, :required => true %>
+          <%= profile.label :image, "Avatar" %>
+          <%= profile.file_field :image %>
+        </div> <!-- tab-pane --> 
+
+        <div class="tab-pane" id="contact">
+          <%= profile.link_to_add "Add a contact", :contacts %>
+
+          <%= profile.fields_for :contacts do |contact| %>
+
+            <b>Address:</b>
+            <%= contact.input :address %>
+            <br><br>
+
+            <b>Email Address:</b>
+            <%= contact.link_to_add "Add an email", :emails %>
+            <%= contact.fields_for :emails do |email| %>
+              <%= email.input :email %>
+              <%= email.link_to_remove "Remove this email" %>
+            <% end %>
+
+            <br><br>
+
+            <b>Phone/Mobile Number:</b>
+            <%= contact.link_to_add "Add a number", :phones %>
+            <%= contact.fields_for :phones do |phone| %>
+              <%= phone.input :phone %>
+              <%= phone.link_to_remove "Remove this number" %>
+            <% end %>
+
+          <% end %>
+        </div>
+
+        <div class="tab-pane" id="education">
+          <%= profile.link_to_add "Add a school", :educations %>
+          <%= profile.fields_for :educations do |educ| %>
+            <%= educ.input :school %>
+            <%= educ.link_to_remove "Remove this school" %>
+          <% end %>
+        </div>
+
+        <div class="tab-pane" id="work">
+          <%= profile.link_to_add "Add a work experience", :work_experiences %>
+          <%= profile.fields_for :work_experiences do |work| %>
+            <%= work.input :title %>
+            <%= work.input :description %>
+            <%= work.link_to_remove "Remove this work experience" %>
+          <% end %>
+        </div>
+
+        <div class="tab-pane" id="achievement">
+          <%= profile.link_to_add "Add an achievement", :achievements %>
+          <%= profile.fields_for :achievements do |ach| %>
+            <%= ach.input :title %>
+            <%= ach.input :description %>
+            <%= ach.link_to_remove "Remove this achievement" %>
+          <% end %>
+        </div>
+
+        <div class="tab-pane" id="lang">
+          <%= profile.link_to_add "Add a language", :languages %>
+          <%= profile.fields_for :languages do |lang| %>
+            <%= lang.input :language %>
+            <%= lang.link_to_remove "Remove this language" %>
+          <% end %>
+        </div>
+
+      <% end %>
+
+    </div> <!-- tab-content -->
+  </div> <!-- tabbabble -->
 
   <div class="form-actions">
     <%= f.button :submit, "Update" %>
   </div>
+
 <% end %>
 
 <h3>Cancel my account</h3>

@@ -26,19 +26,41 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+# co auth
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-gplus'
 gem 'omniauth-twitter'
+
+# forms
 gem 'simple_form'
+gem 'nested_form'
+
+#tags
 gem 'acts-as-taggable-on'
+
+# layouts
 gem 'font-awesome-rails'
-gem 'amistad'
 gem 'google-code-prettify-rails'
+
+# friends
+gem 'amistad'
+
+# search
+# needs sudo apt-get install mysql-client-5.5/mysql-server-5.5
 gem 'mysql2', '0.3.13'
 gem 'thinking-sphinx', '3.0.6'
 gem 'yaml_db'
+
+# rating
+gem 'letsrate'
+
+# file upload
+gem 'carrierwave'
+gem 'rmagick'
+# needs sudo apt-get install libmagickwand-dev
 
 
 # To use ActiveModel has_secure_password
