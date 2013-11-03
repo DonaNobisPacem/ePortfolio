@@ -1,0 +1,6 @@
+updated a comment to
+<% if activity.trackable %>
+  <%= link_to activity.trackable.project.title, activity.trackable.project %>
+<% else %>
+  which has since been removed 
+<% end %>

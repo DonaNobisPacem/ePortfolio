@@ -27,6 +27,9 @@ end
 
 gem 'jquery-rails'
 
+# notifications
+gem 'public_activity'
+
 # co auth
 gem 'devise'
 gem 'omniauth'

@@ -52,7 +52,7 @@
         <% if @comments.count > 0 %>
           <% @comments.each do |comment| %>
             <div class="container" class="row">
-              <%= UserProfile.where( user_id: comment.user_id ).first.last_name %>:
+              <%= UserProfile.where( user_id: comment.user_id ).first.name %>:
               <%= comment.content %>
               <%= comment.created_at %>
             </div>

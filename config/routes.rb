@@ -1,4 +1,6 @@
 EPortfolio::Application.routes.draw do
+  get "notifications/index"
+
   match '/rate' => 'rater#create', :as => 'rate'
 
   root :to => 'home#index'
@@ -15,6 +17,7 @@ EPortfolio::Application.routes.draw do
   end
 
   resources :users
+  resources :notifications
 
   match '/search', :to => "search#index"
 
