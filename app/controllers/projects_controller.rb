@@ -5,9 +5,6 @@ class ProjectsController < ApplicationController
       @user = current_user
       if params[:tag]
         @projects = Project.tagged_with( params[:tag] ).paginate(page: params[:page], per_page: 10 )
-      elsif params[:search]
-        flash[:notice] = "Search"
-        @projects = ThinkingSphinx.search params[:search], :page => params[:page], :per_page => 10 
       else
         @projects = Project.paginate(page: params[:page], per_page: 10 )
       end

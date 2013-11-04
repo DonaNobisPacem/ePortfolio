@@ -1,12 +1,8 @@
-<% provide(:title, 'ePortfolio') %>
-
 <% if user_signed_in? %>
-
-  
-    <%= link_to('Edit account', edit_user_registration_path) %>
-    <%= link_to('My notifications', notifications_path) %>
-    
-  <table class="table table-striped table-bordered">
+<% provide(:title, 'Home') %>
+    <div class="container-fluid" style="background-color: #015629; padding-top: 3%; padding-bottom: 5%;">
+<div class="span12 offset2" align="center">
+  <table id="homeTable" class="table table-bordered">
     <tr>
       <th>Title</th>
       <th>Contributor</th>
@@ -15,25 +11,29 @@
     </tr>
     <% @projects.each do |project| %>
       <tr>
-        <td class="span2" style="word-wrap:break-word"> <%= link_to project.title, project %> </td>
-        <td class="span3" style="word-wrap:break-word">
+        <td style="padding: 15px"> <%= link_to project.title, project %> </td>
+        <td style="padding: 15px">
           <% @contributor = project.contributor.split(', ') %>
           <% @contributor.each do |cont| %>
-            <% @contrib_profile = UserProfile.where("name LIKE ?", "%#{cont}%").first %>
-            <li><%= link_to @contrib_profile.name, User.where(:id => @contrib_profile.user_id).first %></li>
+            <% @contrib_profile = UserProfile.where("concat( first_name, ' ', last_name) LIKE ?", "%#{cont}%").first %>
+            <li><%= link_to @contrib_profile.fullname, User.where(:id => @contrib_profile.user_id).first %></li>
           <% end %>
         </td>
-        <td class="span1" style="word-wrap:break-word"> <%= project.description %> </td>
-        <td class="span1" style="word-wrap:break-word"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
+        <td style="padding: 15px"> <%= project.description %> </td>
+        <td style="padding: 15px"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
       </tr>
     <% end %>
   </table>
   <%= will_paginate @projects %>
-  <%= link_to 'Create Project', new_project_path, class: "btn btn-large btn-primary" %>
 
+<%= link_to('Edit Account', edit_user_registration_path, class: "btn btn-success") %>
+    <%= link_to('My Notifications', notifications_path, class: "btn btn-success")  %>
+    <%= link_to 'Create Project', new_project_path, class: "btn btn-success" %>
+</div>
+  </div>
 <% else %>
-
-  <div class="container-fluid" style="background-color: #015629; padding-top: 3%; padding-bottom: 5%;">
+<% provide(:title, 'ePortfolio') %>
+ <div class="container-fluid" style="background-color: #015629; padding-top: 3%; padding-bottom: 5%;">
       <div class="row-fluid">
         <div class="span3" style="margin-left: 5%; margin-right: 4%;">
 
@@ -45,9 +45,11 @@
 
               <br>
 
+              <%= render 'layouts/messages' %>
+
               <div class="input-prepend">
                 <span class="add-on"><i class="icon-user"></i></span>
-                <%= f.text_field :login, :required => false, :autofocus => true, :class => "input-medium", :placeholder => "Username or Email" %>
+                <%= f.text_field :login, :class => "input-medium", :placeholder => "Username/Email", :autofocus => true %>
               </div>
 
               <div class="input-prepend">
@@ -69,9 +71,15 @@
                         Sign Up
                       <% end %>
                     </a>
-                  </div>
-                </div>
-              </div>
+
+                    <br><%= image_tag "or.gif"%>
+
+                    <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                    <%= image_tag "facebook.gif"%>
+                    <% end %>
+                  </div><!-- /.span12 -->
+                </div><!-- /.row-fluid -->
+              </div><!-- /.btn-toolbar -->
             <% end %>
 
               <div id="myModal" class="well modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color: #e6fae1; width: 35%">
@@ -88,21 +96,26 @@
                       <% resource.build_user_profile %>
                       <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :namespace => 'signup') do |g| %>
 
+                        <%= g.fields_for :user_profile do |profile| %>
+                        <%= profile.text_field :first_name, :required => true, :class => "input-medium", :placeholder => "First Name", :label => false %>
+                        <%= profile.text_field :last_name, :required => true, :class => "input-medium", :placeholder => "Last Name", :label => false %>
                         <%= g.text_field :username, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Username", :label => false %>
                         <%= g.text_field :email, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Email", :label => false %>
-                        <%= g.input :password, :required => true, :class => "input-medium", :placeholder => "Password", :label => false %>
-                        <%= g.input :password_confirmation, :required => true, :class => "input-medium", :placeholder => "Re-enter password", :label => false %>
-
-                        <%= g.fields_for :user_profile do |profile| %>
-                          <%= profile.input :name, :required => true, :class => "input-medium", :placeholder => "Name", :label => false %>
-                          <%= image_tag 'gender.png' %>
-                          <%= profile.radio_button :gender, '0' %> <%= image_tag 'female.png' %>
-                          <%= profile.radio_button :gender, '1' %> <%= image_tag 'male.png' %>
-                        <% end %>
+                        <%= g.text_field :password, :required => true, :class => "input-medium", :placeholder => "Password", :label => false %>
+                        <%= g.text_field :password_confirmation, :required => true, :class => "input-medium", :placeholder => "Re-enter password", :label => false %>
 
                         <br>
-                        <%= g.button :submit, "Sign Up", :class => "btn btn-success" %>
+
+                        <%= image_tag 'gender.png', :style => "margin-bottom: -3%" %>
+                        <%= profile.radio_button :gender, '0' %> <%= image_tag 'female.png', :style => "margin-bottom: -3%" %>
+                        <%= profile.radio_button :gender, '1' %> <%= image_tag 'male.png', :style => "margin-bottom: -3%" %>
+                        <% end %>
+
                         <br><br>
+
+                        <%= g.button :submit, "Sign Up", :class => "btn btn-success" %>
+
+                        <br>
 
                       <% end %>
                     </div>
@@ -121,24 +134,24 @@
                   <div class="item active"><!--<img src="assets/img/cs1.jpg" alt="First slide">-->
                     <%= image_tag 'cs1.jpg', :alt => "First slide" %>
                     <div class="carousel-caption">
-                      <h4>ePortfolio in the comfort of your own home</h4>
-                      <p>(First part of ePortfolio tutorial goes here.)</p>
+                      <h4>Sign up for an ePortfolio</h4>
+                      <p>Options include the default email, or by Facebook</p>
                     </div>
                    </div>
 
                   <div class="item"><!-- <img src="assets/img/cs2.jpg" alt="Second slide"> -->
                     <%= image_tag 'cs2.jpg', :alt => "Second Slide" %>
                     <div class="carousel-caption">
-                      <h4>ePortfolio while on vacation</h4>
-                      <p>(Succeeding parts of ePortfolio tutorial go here. More text. MOAR TEX.)</p>
+                      <h4>Add details and projects to your account</h4>
+                      <p>Tag other users on collaborative works</p>
                     </div>
                   </div>
 
                   <div class="item"><!-- <img src="assets/img/cs3.jpg" alt="Third slide"> -->
                     <%= image_tag 'cs3.jpg', :alt => "Third Slide" %>
                     <div class="carousel-caption">
-                      <h4>ePortfolio in freakin' outer space</h4>
-                      <p>(Succeeding or last parts of ePortfolio tutorial go here.)</p>
+                      <h4>Showcase your skills</h4>
+                      <p>Browse through our list of users and projects.</p>
                     </div>
                   </div>
                 </div><!-- /carousel-inner-->

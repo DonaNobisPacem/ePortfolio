@@ -1,10 +1,14 @@
+<% provide(:title, 'Edit User') %>
+<div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
+    <div class="span12 hero-unit offset3" style="background-color: #e6fae1; width: 55%" align="center">
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <% resource.build_user_profile if resource.user_profile.nil? %>
 <%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put , :multipart => true }) do |f| %>
   <%= f.error_notification %>
-
-  <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+<br>
+  <%= f.text_field :current_password, :autofocus => true, :hint => "we need your current password to confirm your changes", :required => true, :label => false, :placeholder => "Current password" %><br><br>
 
   <%= f.fields_for :user_profile do |profile| %>
 
@@ -23,20 +27,21 @@
       <div class="tab-pane active" id="account">
         <div class="row">
           <div class="span6">
-            <%= f.input :email, :required => true, :autofocus => true %>
+            <%= f.text_field :email, :required => true, :autofocus => false, :label => false %><br>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
             <% end %>
 
-            <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-            <%= f.input :password_confirmation, :required => false %>
+            <%= f.text_field :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false, :label => false, :placeholder => "New Password" %><br>
+            <%= f.text_field :password_confirmation, :required => false, :label => false, :placeholder => "Re-enter Password" %><br>
           </div> <!-- span6 -->
         </div> <!-- row -->
       </div> <!-- tab-pane -->
 
         <div class="tab-pane" id="info">
-          <%= profile.input :name, :required => true %>
+          <%= profile.input :first_name, :required => true %>
+          <%= profile.input :last_name, :required => true %>
           <%= profile.label :image, "Avatar" %>
           <%= profile.file_field :image %>
         </div> <!-- tab-pane --> 
@@ -107,15 +112,16 @@
 
     </div> <!-- tab-content -->
   </div> <!-- tabbabble -->
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
+<br>
+    <%= f.button :submit, "Update", :class => "btn btn-success" %>
 
 <% end %>
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+<p>Unhappy? <%= button_to "Cancel Account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
 
-<%= link_to "Back", :back %>
+<%= button_to "Back", :back, :class => "btn btn-success" %>
+
+</div>
+</div>

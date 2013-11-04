@@ -2,6 +2,65 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner" >
 
+    <style type="text/css">
+    .navbar .navbar-inner {
+	  border-bottom: 1px solid #014421;
+	  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+	  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+	  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) , 0 0 10px rgba(0, 0, 0, 0.1);
+	}
+
+	.navbar-inner {
+	  background-color: #014421;
+	  background-image: linear-gradient(to bottom, #009b4a, #014421);
+	  background-repeat: no-repeat;
+	  filter: none;
+	}
+
+	.navbar .brand {
+	  float: left;
+	  display: block;
+	  padding: 9.5px 20px 9.5px;
+	  margin-left: -10px;
+	  font-size: 20px;
+	  font-weight: 200;
+	  color: #d8d8d8;
+	  text-shadow: 0 1px 0 #000000;
+	}
+
+	.navbar .brand:hover {
+	  float: left;
+	  display: block;
+	  padding: 9.5px 20px 9.5px;
+	  margin-left: -10px;
+	  font-size: 20px;
+	  font-weight: 200;
+	  color: #ffffff;
+	  text-shadow: 0 1px 0 #000000;
+	}
+
+	.navbar .nav>li>a {
+	  float: none;
+	  padding: 9.5px 15px 9.5px;
+	  color: #d8d8d8;
+	  text-decoration: none;
+	  text-shadow: 0 1px 0 #000000;
+	}
+
+	.navbar .nav>li>a:hover {
+	  float: none;
+	  padding: 9.5px 15px 9.5px;
+	  color: #ffffff;
+	  text-decoration: none;
+	  text-shadow: 0 1px 0 #000000;
+	}
+
+	.navbar .nav .active > a, .navbar .nav .active > a:hover {
+	  background-color: #e6fae1;
+	  color: #015629;
+	}
+	</style>
+	
 	    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
@@ -13,17 +72,19 @@
 	    <div class="nav-collapse">
 			<ul class="nav pull-left">
 			  <li class="">
-			  <%= form_tag search_path, :method => 'get', :class => "form-search" do %>
 			    <div class="input-append" style="margin-top: 2.5%">
-		              <!-- <input type="text" name="q" class="span2 search-query" placeholder="Search for files, etc" style="width: 130%">
+			      <%= form_tag search_path, :method => 'get', :class => "form-search" do %>
+		              <!-- <input type="text" name="q" class="span2 search-query" placeholder="Search for files, etc<!-- " style="width: 130%">
 		              <button type="submit" class="btn" style="margin-left: -5%"><i class="icon-search"></i></button> -->
-				    <%= text_field_tag :search, params[:search], :class => "span2 search-query", :placeholder => "Search", :style => "width 130%" %>
-				    <%= button_tag :type => "submit", :class => "btn" do %>
+
+				    <%= text_field_tag :search, params[:search], :class => "span2 search-query", :placeholder => "Search for users or projects", :style => "width: 145%" %>    
+
+				    <%= button_tag :type => "submit", :class => "btn", :style => "margin-left: -5%" do %>
 				    <i class="icon-search"></i>
 				    <% end %>
+				  <% end %>
 		        </div>
-		        <% end %>
-		       </li>
+		      </li>
 			</ul>
 
 
@@ -36,14 +97,14 @@
 			  </li>
 			  <li class="">
 			  	<%= link_to current_user do %>
-			  	<i class="icon-book"></i> Portfolio
+			  	<i class="icon-user"></i> Profile
 			  	<% end %>
 			  </li>
-			  <li class="">
-			  	<%= link_to help_path do %>
+			  <!-- <li class="">
+			  	<% link_to help_path do %>
 			  	<i class="icon-question-sign"></i> Help
 			  	<% end %>
-			  </li>
+			  </li> -->
 			  <li class="">
 			  	<%= link_to(destroy_user_session_path, :method=>'delete') do %>
 			  	<i class="icon-signout"></i> Logout

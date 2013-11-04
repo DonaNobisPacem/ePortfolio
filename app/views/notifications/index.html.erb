@@ -1,3 +1,6 @@
+<% provide(:title, 'Notifications') %>
+<div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
+    <div class="hero-unit offset4" style="background-color: #e6fae1; width: 40%" align="center">
 <h1>Notifications#index</h1>
 <p>Find me in app/views/notifications/index.html.erb</p>
 
@@ -7,24 +10,25 @@
 <% @notifications.each do |activity| %>
   <div class="activity">
   	<% @user_profile = UserProfile.where( :user_id => activity.owner_id ).first %>
-    <%= link_to @user_profile.name, activity.owner if activity.owner %>
+    <%= link_to @user_profile.fullname, activity.owner if activity.owner %>
     <%= render_activity activity %>
   </div>
 <% end %>
 
 <h1>Pending Friend Requests</h1>
-	<table class="table table-striped table-bordered">
+	<table class="table table-bordered">
 		<tr>
 			<th>Username</th>
 			<th>Confirmation</th>
 		</tr>
 		<% @friend_requests.each do |pending| %>
 		<tr>
-			<td class="span3" style="word-wrap:break-word"> <%= link_to User.find(pending.id).username, pending %> </td>
-			<td class="span3" style="word-wrap:break-word"> <%= link_to "Confirm friend?", friend_path(pending.id), :method => "put" %> </td>
+			<td style="padding: 15px"> <%= link_to User.find(pending.id).username, pending %> </td>
+			<td style="padding: 15px"> <%= link_to "Confirm friend?", friend_path(pending.id), :method => "put" %> </td>
 		</tr>
     	<% end %>
 
 	</table>
 
 
+</div></div>

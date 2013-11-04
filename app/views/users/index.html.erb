@@ -1,6 +1,8 @@
 <% provide(:title, 'Users') %>
 <% if user_signed_in? %>
-	<table class="table table-striped table-bordered">
+<div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
+    <div class="span12 hero-unit offset4" style="background-color: #e6fae1; width: 40%" align="center">
+	<table class="table table-bordered">
 		<tr>
 			<th>Username</th>
 			<th>Email</th>
@@ -8,10 +10,10 @@
 		</tr>
 		<% @users.each do |user| %>
 			<tr>
-				<td class="span2" style="word-wrap:break-word"> <%= link_to user.username, user %> </td>
-				<td class="span3" style="word-wrap:break-word"> <%= user.email%> </td>
+				<td style="padding: 15px"> <%= link_to user.username, user %> </td>
+				<td style="padding: 15px"> <%= user.email%> </td>
 				<% @user_profile = UserProfile.where( user_id: user.id ).first %>
-				<td class="span1" style="word-wrap:break-word"> <%= @user_profile.name %> </td>   
+				<td style="padding: 15px"> <%= @user_profile.fullname %> </td>   
 			</tr>
 		<% end %>
 	</table>
@@ -19,3 +21,5 @@
 <% else %>
 	<%= "You are not signed in!" %>
 <% end %>
+</div>
+</div>

@@ -1,5 +1,5 @@
 class UserProfile < ActiveRecord::Base
-  attr_accessible :name, :image, :gender, :user_id, :birthday
+  attr_accessible :name, :image, :gender, :user_id, :birthday, :first_name, :last_name
   attr_accessible :languages_attributes, :contacts_attributes, :educations_attributes, :work_experiences_attributes, :achievements_attributes
   belongs_to :user
 
@@ -17,4 +17,7 @@ class UserProfile < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  def fullname
+    "#{first_name} #{last_name}"
+  end
 end

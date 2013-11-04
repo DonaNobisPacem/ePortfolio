@@ -1,46 +1,50 @@
 <% provide(:title, 'Search Results') %>
 
 <% if user_signed_in? %>
+<div align="center" class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
+	<h2 style="color: #e6fae1">Search Results for <%= @query %>:</h2>
 
-	<h2>Search Results for <%= @query %>:</h2>
-
-<div class="tabbable tabs-left">
+<div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#projects" data-toggle="tab">Projects</a></li>
     <li><a href="#users" data-toggle="tab">Users</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="projects">
-          	<table class="table table-striped table-bordered">
+          	<table class="table table-bordered">
+          	  <thead>
 				<tr>
 					<th>Title</th>
 					<th>Contributor</th>
 					<th>Description</th>
 					<th>Tags</th>
 				</tr>
+			  </thead>
+			  <tbody>
 				<% @projects_list.each do |project| %>
 					<tr>
-						<td class="span2" style="word-wrap:break-word"> <%= link_to project.title, project %> </td>
-						<td class="span3" style="word-wrap:break-word">
+						<td style="padding: 15px"> <%= link_to project.title, project %> </td>
+						<td style="padding: 15px">
 				          <% @contributor = project.contributor.split(', ') %>
 				          <% @contributor.each do |cont| %>
-				            <% @contrib_profile = UserProfile.where("name LIKE ?", "%#{cont}%").first %>
+				            <% @contrib_profile = UserProfile.where("concat( first_name, ' ', last_name) LIKE ?", "%#{cont}%").first %>
 				            <% if @contrib_profile.blank? %>
 				            	<li><%= cont %></li>
 				            <% else %>
-				            <li><%= link_to @contrib_profile.name, User.where(:id => @contrib_profile.user_id).first %></li>
+				            <li><%= link_to @contrib_profile.fullname, User.where(:id => @contrib_profile.user_id).first %></li>
 				           	<% end %>
 				          <% end %>
 				        </td>
-						<td class="span1" style="word-wrap:break-word"> <%= project.description %> </td>       
-						<td class="span1" style="word-wrap:break-word"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
+						<td style="padding: 15px"> <%= project.description %> </td>       
+						<td style="padding: 15px"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
 					</tr>
 				<% end %>
+			  </tbody>
 			</table>
 			<%= will_paginate @projects_list %>
     </div>
     <div class="tab-pane" id="users">
-      <table class="table table-striped table-bordered">
+      <table class="table table-bordered">
 		<tr>
 			<th>Username</th>
 			<th>Email</th>
@@ -48,10 +52,10 @@
 		</tr>
 		<% @users_list.each do |user| %>
 			<tr>
-				<td class="span2" style="word-wrap:break-word"> <%= link_to user.username, user %> </td>
-				<td class="span3" style="word-wrap:break-word"> <%= user.email%> </td>
+				<td style="padding: 15px"> <%= link_to user.username, user %> </td>
+				<td style="padding: 15px"> <%= user.email%> </td>
 				<% @user_profile = UserProfile.where( user_id: user.id ).first %>
-				<td class="span1" style="word-wrap:break-word"> <%= @user_profile.name %> </td>   
+				<td style="padding: 15px"> <%= @user_profile.fullname %> </td>   
 			</tr>
 		<% end %>
 		</table>
@@ -64,3 +68,5 @@
 <% else %>
 	<%= "You are not signed in!" %>
 <% end %>
+
+</div>

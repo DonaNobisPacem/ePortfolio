@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(:version => 20131029172116079) do
     t.integer  "gender"
     t.datetime "birthday"
     t.string   "image"
+    t.string   "last_name"
+    t.string   "first_name"
   end
 
   create_table "user_projects", :force => true do |t|

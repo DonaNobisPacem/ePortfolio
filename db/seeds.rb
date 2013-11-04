@@ -21,7 +21,8 @@ params =
 	    :password_confirmation => '07211994',
 	    :user_profile_attributes => 
 	    	{
-	        :name => 'John Thomas Raphael Dulay',
+	        :first_name => 'John Thomas Raphael',
+	        :last_name => 'Dulay',
 	        :gender => '1'
 	      	}
 	}
@@ -38,7 +39,8 @@ params =
 	    :password_confirmation => '12345678',
 	    :user_profile_attributes => 
 	    	{
-	        :name => 'Test User the 1st',
+	        :first_name => 'Test User',
+	        :last_name => 'the 1st',
 	        :gender => '1'
 	      	}
 	}
@@ -55,7 +57,8 @@ params =
 	    :password_confirmation => '12345678',
 	    :user_profile_attributes => 
 	    	{
-	        :name => 'Test User the 2nd',
+	        :first_name => 'Test User',
+	        :last_name => 'the 2nd',
 	        :gender => '1'
 	      	}
 	}
@@ -72,7 +75,8 @@ params =
 	    :password_confirmation => '12345678',
 	    :user_profile_attributes => 
 	    	{
-	        :name => 'Test User the 3rd',
+	        :first_name => 'Test User',
+	        :last_name => 'the 3rd',
 	        :gender => '1'
 	      	}
 	}
@@ -89,7 +93,8 @@ params =
 	    :password_confirmation => '12345678',
 	    :user_profile_attributes => 
 	    	{
-	        :name => 'Test User the 4th',
+	        :first_name => 'Test User',
+	        :last_name => 'the 4th',
 	        :gender => '0'
 	      	}
 	}
@@ -106,7 +111,8 @@ params =
 	    :password_confirmation => '12345678',
 	    :user_profile_attributes => 
 	    	{
-	        :name => 'Test User the 5th',
+	        :first_name => 'Test User',
+	        :last_name => 'the 5th',
 	        :gender => '0'
 	      	}
 	}
