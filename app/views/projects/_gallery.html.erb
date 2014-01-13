@@ -1,0 +1,6 @@
+<% screens.each do |ss| %>
+    <%= link_to ss.image_url, :target => "_blank" do %>
+        <%= ss.description %>
+        <%= image_tag ss.image_url(:thumb).to_s%>
+    <% end %>
+<% end %>

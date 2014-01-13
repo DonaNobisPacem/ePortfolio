@@ -1,0 +1,50 @@
+<% provide(:title, 'Edit Project') %>
+<% if user_signed_in? %>
+<h1>EDIT</h1>
+<div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
+    <div class="span12 hero-unit offset4" style="background-color: #e6fae1; width: 40%" align="center">
+        <%= simple_nested_form_for(@project, :align => "center", :html => { :method => :put , :multipart => true }) do |f| %>
+        <%= f.hidden_field :creator, :value => current_user.id %>
+        <%= image_tag "title.png"%> <%= f.text_field :title, :required => true, :autofocus => true, :placeholder => "Project Title", :label => false %><br>
+        <%= image_tag "author.png"%> <%= f.text_field :contributor, :required => true, :autofocus => true, :placeholder => "Add proponents", :label => false %><br>
+
+
+        <%= f.link_to_add "Add a contributor", :contributors %><br> 
+        
+        <%= f.fields_for :contributors do |contributor| %>
+            <%= contributor.text_field :name, :placeholder => "Name" %><br>
+            <%= contributor.text_field :link, :placeholder => "User profile link if it exists" %><br>
+            <%= contributor.radio_button :contributor_type, '0' %> Colleage
+            <%= contributor.radio_button :contributor_type, '1' %> Supervisor
+            <%= contributor.radio_button :contributor_type, '2' %> Client
+            <%= contributor.link_to_remove "Remove this contributor" %>
+        <% end %>
+
+        
+        <%= image_tag "desc.png"%> <%= f.text_field :description, :required => true, :autofocus => true, :placeholder => "Maximum of 250 words", :label => false %><br>
+        <%= image_tag "tags.png"%> <%= f.text_field :tag_list, :placeholder => "Separated by commas", :label => false %><br>
+        <%= image_tag "ref.png"%> <%= f.text_field :link, :required => true, :placeholder => "Project Source", :label => false %><br>
+
+        <%= f.fields_for :gallery do |gal| %>
+            <%= gal.link_to_add "Add a screenshot", :screenshots %><br>
+            <%= gal.fields_for :screenshots do |ss| %>
+                <%= ss.text_field :description, :placeholder => "Image description" %>
+                <%= ss.file_field :image %>
+                <%= ss.link_to_remove "Remove this screenshot" %>
+            <% end %>
+        <% end %>
+        <!--
+        "Ala sense maglagay ng rating sa sariling projects" 
+        Rating: <input class="rating" type="number" data-max="4" data-min="0" data-clearable="remove" name="your_awesome_parameter" id="some_id" /> -->
+        <div class="btn-toolbar">
+          <div class="row-fluid">
+            <%= f.button :submit, "Save", :class => "btn btn-success" %>
+
+            <% end %>
+            
+            <%= button_to "Cancel", :back, :class => "btn btn-success" %><br>
+          </div>
+        </div><!-- /btn-toolbar -->
+    </div><!-- /hero-unit-->
+  </div><!-- /containerfluid -->
+<% end %>

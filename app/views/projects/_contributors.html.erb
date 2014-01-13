@@ -1,0 +1,8 @@
+<% contributors.each do |cont| %>
+<% if cont.link.length > 0 %>
+<%= link_to cont.name, url_with_protocol(cont.link), :target => '_blank' %><br>
+<% else %>
+<%= link_to cont.name, :controller => "search", :action => "index", :search => cont.name %>
+<% end %>
+<%= cont.contributor_type %><br>
+<% end %>

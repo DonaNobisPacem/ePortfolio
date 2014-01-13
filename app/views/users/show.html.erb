@@ -5,9 +5,9 @@
 <h2>User Profile</h2>
 	<%= image_tag @user_profile.image_url(:thumb).to_s%>
 
-<%= @user_profile.fullname %>
+	<%= @user_profile.fullname %>
 
-	</table>
+	<!-- </table>
 	<b>Educ:</b>
 	<% @education = Education.where( :user_profile_id => @user_profile.id ) %>
 	<% @education.each do |educ| %>

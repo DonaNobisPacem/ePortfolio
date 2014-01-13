@@ -131,7 +131,8 @@ params =
 	    :description => 'test description 1 alpha beta gamma',
 	    :contributor => 'John Thomas Raphael Dulay, Test User the 1st, Test User the 2nd',
 	    :link => 'www.google.com',
-	    :tag_list => 'tag1, tag2, tag3'
+	    :tag_list => 'tag1, tag2, tag3',
+	    :gallery_attributes => {}
 	}
 }
 Project.create!(params[:project])
@@ -144,7 +145,8 @@ params =
 	    :description => 'test description 2 delta omega lamda',
 	    :contributor => 'John Thomas Raphael Dulay, Test User the 3rd, Test User the 2nd',
 	    :link => 'www.google.com',
-	    :tag_list => 'tag4, tag2, tag3'
+	    :tag_list => 'tag4, tag2, tag3',
+	    :gallery_attributes => {}
 	}
 }
 Project.create!(params[:project])
@@ -157,7 +159,8 @@ params =
 	    :description => 'test description 3 lambda theta phi',
 	    :contributor => 'Test User the 5th, Test User the 1st, Test User the 2nd',
 	    :link => 'www.google.com',
-	    :tag_list => 'tag1, tag4, tag5'
+	    :tag_list => 'tag1, tag4, tag5',
+	    :gallery_attributes => {}
 	}
 }
 Project.create!(params[:project])
@@ -170,7 +173,8 @@ params =
 	    :description => 'test description 4 alpha lambda omega',
 	    :contributor => 'John Thomas Raphael Dulay, Test User the 4th, Test User the 5th',
 	    :link => 'www.google.com',
-	    :tag_list => 'tag4, tag2, tag3'
+	    :tag_list => 'tag4, tag2, tag3',
+	    :gallery_attributes => {}
 	}
 }
 Project.create!(params[:project])
@@ -183,7 +187,8 @@ params =
 	    :description => 'test description 5 omega phi gamma',
 	    :contributor => 'Test User the 3rd, Test User the 1st, Test User the 2nd',
 	    :link => 'www.google.com',
-	    :tag_list => 'tag1, tag4, tag5'
+	    :tag_list => 'tag1, tag4, tag5',
+	    :gallery_attributes => {}
 	}
 }
 Project.create!(params[:project])

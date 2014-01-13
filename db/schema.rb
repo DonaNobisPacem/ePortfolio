@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(:version => 20131029172116079) do
     t.integer  "user_profile_id"
   end
 
+  create_table "contributors", :force => true do |t|
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "name"
+    t.string   "link"
+    t.integer  "contributor_type"
+    t.integer  "project_id"
+  end
+
   create_table "educations", :force => true do |t|
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
@@ -78,6 +87,17 @@ ActiveRecord::Schema.define(:version => 20131029172116079) do
   end
 
   add_index "friendships", ["friendable_id", "friend_id"], :name => "index_friendships_on_friendable_id_and_friend_id", :unique => true
+
+  create_table "galleries", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "project_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "languages", :force => true do |t|
     t.string   "language"
@@ -114,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20131029172116079) do
     t.integer  "rating"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "creator"
   end
 
   create_table "rates", :force => true do |t|
@@ -140,6 +161,14 @@ ActiveRecord::Schema.define(:version => 20131029172116079) do
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], :name => "index_rating_caches_on_cacheable_id_and_cacheable_type"
+
+  create_table "screenshots", :force => true do |t|
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "image"
+    t.string   "description"
+    t.integer  "gallery_id"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
