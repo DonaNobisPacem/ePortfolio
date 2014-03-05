@@ -1,5 +1,5 @@
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
-    <label style="color: black"><i class="icon-exclamation-sign"></i> Invalid username/password.</label>
+    <label style="color: black"><i class="icon-exclamation-sign"></i> <%= content_tag :div, msg, :id => "flash_#{name}" %> </label>
   <% end %>
 <% end %>

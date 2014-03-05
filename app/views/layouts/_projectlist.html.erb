@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+		<tr>
+			<th>Title</th>
+			<th>Contributor</th>
+			<th>Description</th>
+			<th>Tags</th>
+		</tr>
+		<% projects.each do |project| %>
+			<tr>
+				<td style="padding: 15px"> <%= link_to project.title, project %> </td>
+				<td style="padding: 15px"> <%= render 'layouts/contributors', :contributors => project.contributors %> </td>
+				<td style="padding: 15px"> <%= project.description %> </td>       
+				<td style="padding: 15px"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
+			</tr>
+		<% end %>
+</table>

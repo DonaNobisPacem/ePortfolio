@@ -26,6 +26,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'rails3-jquery-autocomplete'
+gem 'jquery-ui-rails'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 
 # notifications
 gem 'public_activity'
@@ -40,7 +44,6 @@ gem 'omniauth-twitter'
 # forms
 gem 'simple_form'
 gem 'nested_form'
-
 #tags
 gem 'acts-as-taggable-on'
 

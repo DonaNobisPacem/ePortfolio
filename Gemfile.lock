@@ -42,6 +42,10 @@ GEM
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
+    client_side_validations (3.2.6)
+    client_side_validations-simple_form (2.1.0)
+      client_side_validations (~> 3.2.5)
+      simple_form (~> 2.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -75,6 +79,9 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.2)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -136,6 +143,8 @@ GEM
       activesupport (= 3.2.9)
       bundler (~> 1.0)
       railties (= 3.2.9)
+    rails3-jquery-autocomplete (1.0.12)
+      rails (>= 3.0)
     railties (3.2.9)
       actionpack (= 3.2.9)
       activesupport (= 3.2.9)
@@ -202,11 +211,14 @@ DEPENDENCIES
   bootstrap-sass (= 2.1)
   bootstrap-will_paginate (= 0.0.6)
   carrierwave
+  client_side_validations
+  client_side_validations-simple_form
   coffee-rails (~> 3.2.1)
   devise
   font-awesome-rails
   google-code-prettify-rails
   jquery-rails
+  jquery-ui-rails
   letsrate
   mysql2 (= 0.3.13)
   nested_form
@@ -216,6 +228,7 @@ DEPENDENCIES
   omniauth-twitter
   public_activity
   rails (= 3.2.9)
+  rails3-jquery-autocomplete
   rmagick
   sass-rails (~> 3.2.3)
   simple_form

@@ -8,6 +8,7 @@ EPortfolio::Application.routes.draw do
 
   get 'tag/:tag', to: 'projects#index', as: :tag
   resources :projects do
+    get :autocomplete_user_profile_last_name, :on => :collection
     resources :project_comments
   end
 
@@ -16,9 +17,13 @@ EPortfolio::Application.routes.draw do
     get "invites", :on => :collection
   end
 
-  resources :users
+  resources :users do
+    get :autocomplete_project_title, :on => :collection
+  end
+  
   resources :notifications
 
+  match '/test/autocomplete' => 'projects#name_autocomplete'
   match '/search', :to => "search#index"
 
   match '/help', :to => 'help#index'

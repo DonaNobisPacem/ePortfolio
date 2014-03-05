@@ -23,15 +23,7 @@
 
           <p>
             <b>Contributors:</b>
-            <% @contributor = @project.contributor.split(', ') %>
-            <% @contributor.each do |cont| %>
-            <% @contrib_profile = UserProfile.where("concat( first_name, ' ', last_name ) LIKE ?", "%#{cont}%").first %>
-            <li><%= link_to @contrib_profile.fullname, User.where(:id => @contrib_profile.user_id).first %></li>
-          <% end %>
-
-          <p> TEST
-            <b>Contributors:</b>
-            <%= render 'contributors', :contributors => @cont %>
+            <%= render 'layouts/contributors', :contributors => @cont %>
           </p>
           </p>
           <p>
@@ -44,12 +36,8 @@
             <%= raw @project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
           </p>
           <p>
-            <b>Link:</b>
+            <b>Reference:</b>
             <%= link_to @project.link, url_with_protocol(@project.link), :target => '_blank' %>
-          </p>
-          <p>
-            <b>Link Type:</b>
-            <%= @project.link_type %>
           </p>
           <p>
             <b>Rating:</b>
@@ -57,7 +45,7 @@
           </p>
           <p>
             <b>Gallery:</b>
-              <%= render 'gallery', :screens => @project.gallery.screenshots %>
+              <%= render 'layouts/gallery', :screens => @project.gallery.screenshots %>
           </p>
       </div>
     </div>

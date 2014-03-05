@@ -1,6 +1,6 @@
 <% provide(:title, 'Edit User') %>
 <div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
-    <div class="span12 hero-unit offset3" style="background-color: #e6fae1; width: 55%" align="center">
+    <div class="hero-unit" style="background-color: #e6fae1" align="center">
 
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
@@ -15,11 +15,6 @@
     <ul class="nav nav-tabs">
       <li class="active"><a href="#account" data-toggle="tab">User Account</a></li>
       <li><a href="#info" data-toggle="tab">Basic Info</a></li>
-      <li><a href="#contact" data-toggle="tab">Contact Info</a></li>
-      <li><a href="#education" data-toggle="tab">Education</a></li>
-      <li><a href="#work" data-toggle="tab">Work Experience</a></li>
-      <li><a href="#achievement" data-toggle="tab">Achievements</a></li>
-      <li><a href="#lang" data-toggle="tab">Languages</a></li>
     </ul>
 
     <div class="tab-content">
@@ -39,73 +34,38 @@
       </div> <!-- tab-pane -->
 
         <div class="tab-pane" id="info">
+          <b>Basic information:</b>
           <%= profile.input :first_name, :required => true %>
           <%= profile.input :last_name, :required => true %>
+          <%= profile.label :birthday, "Birthday" %>
+          <%= profile.date_select :birthday, :start_year => 1950 %>
           <%= profile.label :image, "Avatar" %>
           <%= profile.file_field :image %>
+          <%= profile.input :current_address, :placeholder => 'current_address' %>
+          <%= profile.input :permanent_address, :placeholder => 'permanent_address' %>
+          <b>Education:</b>
+          <%= profile.input :primary_education, :placeholder => "Primary Education" %>
+          <%= profile.input :primary_education_grad, :placeholder => "Date Graduated" %>
+          <%= profile.input :secondary_education, :placeholder => "secondary_education" %>
+          <%= profile.input :secondary_education_grad, :placeholder => "secondary_education_grad" %>
+          <%= profile.input :tertiary_education, :placeholder => "tertiary_education" %>
+          <%= profile.input :tertiary_education_grad, :placeholder => 'tertiary_education_grad' %>
+          <%= profile.input :vocational_education, :placeholder => "vocational_education" %>
+          <%= profile.input :vocational_education_grad, :placeholder => 'vocational_education_grad' %>
+          <b>Contact information:</b>
+          <%= profile.input :primary_email, :placeholder => "primary_email" %>
+          <%= profile.input :mobile_number, :placeholder => 'mobile_number' %>
+          <%= profile.input :website_address, :placeholder => 'website_address' %>
+          <b>Employment History:</b>
+          <%= profile.text_area :employment_history %>
+          <b>Achievements:</b>
+          <%= profile.text_area :achievements %>
+          <b>Other relevant information:</b>
+          <%= profile.text_area :others %>
+          <b>Featured Project:</b>
+          <%= profile.autocomplete_field :featured_project_title, autocomplete_project_title_users_path, :id_element => "#featured_project", :placeholder => "Project title" %>
+          <%= profile.hidden_field :featured_project, :id => "featured_project"%>
         </div> <!-- tab-pane --> 
-
-        <div class="tab-pane" id="contact">
-          <%= profile.link_to_add "Add a contact", :contacts %>
-
-          <%= profile.fields_for :contacts do |contact| %>
-
-            <b>Address:</b>
-            <%= contact.input :address %>
-            <br><br>
-
-            <b>Email Address:</b>
-            <%= contact.link_to_add "Add an email", :emails %>
-            <%= contact.fields_for :emails do |email| %>
-              <%= email.input :email %>
-              <%= email.link_to_remove "Remove this email" %>
-            <% end %>
-
-            <br><br>
-
-            <b>Phone/Mobile Number:</b>
-            <%= contact.link_to_add "Add a number", :phones %>
-            <%= contact.fields_for :phones do |phone| %>
-              <%= phone.input :phone %>
-              <%= phone.link_to_remove "Remove this number" %>
-            <% end %>
-
-          <% end %>
-        </div>
-
-        <div class="tab-pane" id="education">
-          <%= profile.link_to_add "Add a school", :educations %>
-          <%= profile.fields_for :educations do |educ| %>
-            <%= educ.input :school %>
-            <%= educ.link_to_remove "Remove this school" %>
-          <% end %>
-        </div>
-
-        <div class="tab-pane" id="work">
-          <%= profile.link_to_add "Add a work experience", :work_experiences %>
-          <%= profile.fields_for :work_experiences do |work| %>
-            <%= work.input :title %>
-            <%= work.input :description %>
-            <%= work.link_to_remove "Remove this work experience" %>
-          <% end %>
-        </div>
-
-        <div class="tab-pane" id="achievement">
-          <%= profile.link_to_add "Add an achievement", :achievements %>
-          <%= profile.fields_for :achievements do |ach| %>
-            <%= ach.input :title %>
-            <%= ach.input :description %>
-            <%= ach.link_to_remove "Remove this achievement" %>
-          <% end %>
-        </div>
-
-        <div class="tab-pane" id="lang">
-          <%= profile.link_to_add "Add a language", :languages %>
-          <%= profile.fields_for :languages do |lang| %>
-            <%= lang.input :language %>
-            <%= lang.link_to_remove "Remove this language" %>
-          <% end %>
-        </div>
 
       <% end %>
 

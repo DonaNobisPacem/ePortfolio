@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+	autocomplete :project, :title, :full => true
+
 	def new
 		@user = User.new
 	end
@@ -13,6 +16,8 @@ class UsersController < ApplicationController
   		@user = User.find params[:id]
   		@user_profile = UserProfile.where( :user_id => @user.id ).first
   		@friends = @user.friends
+  		@projects = Project.where( :creator => @user.id ).paginate(page: params[:page], per_page: 10 )
+  		@featured = Project.where( :id => @user_profile.featured_project ).first
   	end
 	
 	def create
@@ -25,4 +30,9 @@ class UsersController < ApplicationController
 			render 'new'
 		end
 	end
+
+	def get_autocomplete_items(parameters)
+		@user = current_user
+      items = Project.select("title, id").where(["title LIKE ? AND creator = ?", "%#{parameters[:term]}%", @user.id ])
+    end
 end

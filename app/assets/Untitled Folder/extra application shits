@@ -1,0 +1,41 @@
+
+    <%= javascript_include_tag "jquery-1.8.2.min.js" %>
+    <%= javascript_include_tag "underscore.min.js" %>
+    <%= javascript_include_tag "backbone.min.js" %>
+    <%= javascript_include_tag "bootstrap-222.min.js" %>
+    <%= javascript_include_tag "prettify.min.js" %>
+    <%= javascript_include_tag "index.js" %>
+    <%= javascript_include_tag "jquery.tablecloth.js" %>
+
+    <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "jquery_ujs.js" %>
+    <%= javascript_include_tag "jquery_nested_form.js" %>
+    <%= javascript_include_tag "jquery.raty.js" %>
+    <%= javascript_include_tag "letsrate.js.erb" %>
+    <%= javascript_include_tag 'jquery-ui-1.10.4.custom.min.js' %>
+
+    <%= javascript_include_tag "jquery.tablesorter.min.js" %>
+    <script>
+      $(document).ready(function() {
+        $("#homeTable").tablesorter( {sortList: [[0,0], [1,0]]} );
+      });
+    </script>
+    <%= javascript_include_tag "jquery.slimscroll.min.js" %>
+    <script>
+    $(function(){
+      $('#slim').slimScroll({
+        height: '250px'
+      });
+    });
+    </script>
+
+    
+
+    <%= stylesheet_link_tag "bootstrap.css" %>
+    <%= stylesheet_link_tag "bootstrap.min.css" %>
+    <%= stylesheet_link_tag "site.css" %>
+
+
+    <%= stylesheet_link_tag "prettify.css" %>
+    <%= stylesheet_link_tag "font-awesome.min.css" %>
+    <%= stylesheet_link_tag 'no-theme/jquery-ui-1.10.4.custom' %>

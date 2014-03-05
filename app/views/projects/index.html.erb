@@ -2,28 +2,8 @@
 <% if user_signed_in? %>
 <div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
     <div class="span12 offset2" align="center">
-	<table class="table table-bordered">
-		<tr>
-			<th>Title</th>
-			<th>Contributor</th>
-			<th>Description</th>
-			<th>Tags</th>
-		</tr>
-		<% @projects.each do |project| %>
-			<tr>
-				<td style="padding: 15px"> <%= link_to project.title, project %> </td>
-				<td style="padding: 15px">
-          <% @contributor = project.contributor.split(', ') %>
-          <% @contributor.each do |cont| %>
-            <% @contrib_profile = UserProfile.where("concat( first_name, ' ', last_name) LIKE ?", "%#{cont}%").first %>
-            <li><%= link_to @contrib_profile.fullname, User.where(:id => @contrib_profile.user_id).first %></li>
-          <% end %>
-        </td>
-				<td style="padding: 15px"> <%= project.description %> </td>       
-				<td style="padding: 15px"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
-			</tr>
-		<% end %>
-	</table>
+    <%= render 'layouts/projectlist', :projects => @projects %>
+	
 	<%= will_paginate @projects %>
 	<%= link_to 'Create Project', new_project_path, class: "btn btn-success" %>
 

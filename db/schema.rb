@@ -56,13 +56,20 @@ ActiveRecord::Schema.define(:version => 20131029172116079) do
     t.integer  "user_profile_id"
   end
 
+  create_table "contributor_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "contributors", :force => true do |t|
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "name"
     t.string   "link"
-    t.integer  "contributor_type"
+    t.string   "contributor_type"
     t.integer  "project_id"
+    t.integer  "user_id"
   end
 
   create_table "educations", :force => true do |t|
@@ -207,14 +214,33 @@ ActiveRecord::Schema.define(:version => 20131029172116079) do
 
   create_table "user_profiles", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "name"
     t.integer  "gender"
     t.datetime "birthday"
     t.string   "image"
     t.string   "last_name"
     t.string   "first_name"
+    t.integer  "featured_project"
+    t.string   "featured_project_title"
+    t.string   "skills"
+    t.string   "achievements"
+    t.string   "employment_history"
+    t.string   "primary_education"
+    t.string   "secondary_education"
+    t.string   "tertiary_education"
+    t.string   "vocational_education"
+    t.integer  "primary_education_grad"
+    t.integer  "secondary_education_grad"
+    t.integer  "tertiary_education_grad"
+    t.integer  "vocational_education_grad"
+    t.string   "permanent_address"
+    t.string   "current_address"
+    t.string   "primary_email"
+    t.string   "mobile_number"
+    t.string   "website_address"
+    t.string   "others"
   end
 
   create_table "user_projects", :force => true do |t|

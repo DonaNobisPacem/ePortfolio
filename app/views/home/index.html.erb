@@ -2,28 +2,7 @@
 <% provide(:title, 'Home') %>
     <div class="container-fluid" style="background-color: #015629; padding-top: 3%; padding-bottom: 5%;">
 <div class="span12 offset2" align="center">
-  <table id="homeTable" class="table table-bordered">
-    <tr>
-      <th>Title</th>
-      <th>Contributor</th>
-      <th>Description</th>
-      <th>Tags</th>
-    </tr>
-    <% @projects.each do |project| %>
-      <tr>
-        <td style="padding: 15px"> <%= link_to project.title, project %> </td>
-        <td style="padding: 15px">
-          <% @contributor = project.contributor.split(', ') %>
-          <% @contributor.each do |cont| %>
-            <% @contrib_profile = UserProfile.where("concat( first_name, ' ', last_name) LIKE ?", "%#{cont}%").first %>
-            <li><%= link_to @contrib_profile.fullname, User.where(:id => @contrib_profile.user_id).first %></li>
-          <% end %>
-        </td>
-        <td style="padding: 15px"> <%= project.description %> </td>
-        <td style="padding: 15px"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
-      </tr>
-    <% end %>
-  </table>
+  <%= render 'layouts/projectlist', :projects => @projects %>
   <%= will_paginate @projects %>
 
 <%= link_to('Edit Account', edit_user_registration_path, class: "btn btn-success") %>
@@ -92,17 +71,18 @@
                       <%= image_tag 'signup.png' %>
                     </div>
 
-                    <div class="modal-body">
+                    <div class="modal-body" id="user_signup_box">
                       <% resource.build_user_profile %>
-                      <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :namespace => 'signup') do |g| %>
+                      <%= render 'layouts/messages' %>
+                      <%= simple_form_for(resource, :validate => true, :as => resource_name, :url => registration_path(resource_name), :namespace => 'signup', :format => :json, :remote => true ) do |g| %>
 
                         <%= g.fields_for :user_profile do |profile| %>
                         <%= profile.text_field :first_name, :required => true, :class => "input-medium", :placeholder => "First Name", :label => false %>
                         <%= profile.text_field :last_name, :required => true, :class => "input-medium", :placeholder => "Last Name", :label => false %>
-                        <%= g.text_field :username, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Username", :label => false %>
+                        <%= g.text_field :username, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Username", :label => false, :validate => true %>
                         <%= g.text_field :email, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Email", :label => false %>
-                        <%= g.text_field :password, :required => true, :class => "input-medium", :placeholder => "Password", :label => false %>
-                        <%= g.text_field :password_confirmation, :required => true, :class => "input-medium", :placeholder => "Re-enter password", :label => false %>
+                        <%= g.password_field :password, :required => true, :class => "input-medium", :placeholder => "Password", :label => false %>
+                        <%= g.password_field :password_confirmation, :required => true, :class => "input-medium", :placeholder => "Re-enter password", :label => false %>
 
                         <br>
 

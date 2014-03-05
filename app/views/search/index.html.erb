@@ -11,36 +11,7 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="projects">
-          	<table class="table table-bordered">
-          	  <thead>
-				<tr>
-					<th>Title</th>
-					<th>Contributor</th>
-					<th>Description</th>
-					<th>Tags</th>
-				</tr>
-			  </thead>
-			  <tbody>
-				<% @projects_list.each do |project| %>
-					<tr>
-						<td style="padding: 15px"> <%= link_to project.title, project %> </td>
-						<td style="padding: 15px">
-				          <% @contributor = project.contributor.split(', ') %>
-				          <% @contributor.each do |cont| %>
-				            <% @contrib_profile = UserProfile.where("concat( first_name, ' ', last_name) LIKE ?", "%#{cont}%").first %>
-				            <% if @contrib_profile.blank? %>
-				            	<li><%= cont %></li>
-				            <% else %>
-				            <li><%= link_to @contrib_profile.fullname, User.where(:id => @contrib_profile.user_id).first %></li>
-				           	<% end %>
-				          <% end %>
-				        </td>
-						<td style="padding: 15px"> <%= project.description %> </td>       
-						<td style="padding: 15px"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
-					</tr>
-				<% end %>
-			  </tbody>
-			</table>
+          	<%= render 'layouts/projectlist', :projects => @projects_list %>
 			<%= will_paginate @projects_list %>
     </div>
     <div class="tab-pane" id="users">

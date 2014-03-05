@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
     
+  autocomplete :project, :title, :full => true
+  
   def create
     build_resource(sign_up_params)
 
@@ -7,19 +9,20 @@ class RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)
-        respond_with resource, :location => after_sign_up_path_for(resource)
+        return render :json => { :success => true }
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
         expire_session_data_after_sign_in!
-        respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+        return render :json => { :success => true }
       end
     else
-      redirect_to root_path
+      return render:json => {:success => false, :errors => [t("devise.failure.invalid")]}
     end
+
+    redirect_to root_path
   end
   
     def update
-      
       account_update_params = params[:user]
       if account_update_params[:password].blank?
         account_update_params.delete("password")
