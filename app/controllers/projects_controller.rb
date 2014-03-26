@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 	before_filter :authenticate_user!
-  autocomplete :user_profile, :last_name, :full => true, :extra_data => [:first_name, :last_name, :user_id ], :display_value => :fullname
+  autocomplete :user_profile, :last_name, :full => true, :extra_data => [:first_name, :last_name, :user_id ], :display_value => :autocomplete_display
 
   	def index
       @user = current_user

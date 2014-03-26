@@ -10,6 +10,7 @@
     <%= stylesheet_link_tag "application" %>    
     <%= stylesheet_link_tag "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" %>
 
+    <%= stylesheet_link_tag "main.css" %>
 
     <style type="text/css">
         .template_body {
@@ -47,7 +48,6 @@
           color: #393939;
         }
     </style>
-
   </head>
 
 
@@ -77,7 +77,7 @@
 
      <div class="pull-right" style="margin-right: 1%; margin-top: 0.7%">
       <a href="#">
-        <%= image_tag 'celebi.gif' %>
+        <%= image_tag 'arrow.gif' %>
       </a>
     </div>
 
@@ -125,9 +125,7 @@
 
 
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "jquery.min.js" %>
-    <%= javascript_include_tag "jquery.slimscroll.js", "jquery.slimscroll.min.js" %>
-    <%= javascript_include_tag "isotope.pkgd.js" %>
+    
 
     <script>
       $('#myCarousel').carousel({
@@ -151,7 +149,7 @@
         disableFadeOut: false
       });
     </script>
-
+    
     <script>
       $( function() {
         // init Isotope
@@ -171,6 +169,6 @@
         });
       });
     </script>
-    
+
     </body>
 </html>

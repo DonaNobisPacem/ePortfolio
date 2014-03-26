@@ -39,3 +39,19 @@
     <%= stylesheet_link_tag "prettify.css" %>
     <%= stylesheet_link_tag "font-awesome.min.css" %>
     <%= stylesheet_link_tag 'no-theme/jquery-ui-1.10.4.custom' %>
+
+    //add screenshots
+<p>Add Screenshots:</p>
+<%= f.fields_for :gallery do |gal| %>
+    <%= gal.fields_for :screenshots do |ss| %>
+        <%= ss.text_field :description, :placeholder => "Image description" %>
+        <%= ss.file_field :image %>
+        <%= ss.link_to_remove "Remove this screenshot" %>
+    <% end %>
+    <%= gal.link_to_add "Add more screenshot", :screenshots %><br>
+
+    
+          <p>
+            <b>Gallery:</b>
+              <%= render 'layouts/gallery', :screens => @project.gallery.screenshots %>
+          </p>

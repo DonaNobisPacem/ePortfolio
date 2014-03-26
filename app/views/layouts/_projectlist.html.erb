@@ -1,16 +1,24 @@
-<table class="table table-bordered">
-		<tr>
-			<th>Title</th>
-			<th>Contributor</th>
-			<th>Description</th>
-			<th>Tags</th>
-		</tr>
-		<% projects.each do |project| %>
-			<tr>
-				<td style="padding: 15px"> <%= link_to project.title, project %> </td>
-				<td style="padding: 15px"> <%= render 'layouts/contributors', :contributors => project.contributors %> </td>
-				<td style="padding: 15px"> <%= project.description %> </td>       
-				<td style="padding: 15px"><%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
-			</tr>
-		<% end %>
-</table>
+<div class="isotope" align="center">
+  <% projects.each do |project| %>
+    <div class="pin">
+      <div class="holder">
+        <div style="border-color: black; border-style: solid; border-width: 1px;">
+          <%= image_tag 'project.jpg' %>
+        </div>
+
+        <p class="desc">
+          <b><%= link_to project.title, project %></b><br>
+          <%= render 'layouts/contributors', :contributors => project.contributors %><br><br>
+          <%= project.description %>
+        </p>
+
+        <% if project.tag_list.size > 0 %>
+          <br>
+          <p class="info">
+            <%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+          </p>
+        <% end %>
+      </div><!-- /.holder -->
+    </div><!-- /.pin-->
+  <% end %>
+</div>

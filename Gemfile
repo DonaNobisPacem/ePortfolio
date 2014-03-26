@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 
+#needs sudo apt-get install nodejs
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'bcrypt-ruby', '3.0.1'
@@ -55,7 +56,9 @@ gem 'google-code-prettify-rails'
 gem 'amistad'
 
 # search
+# needs sudo apt-get install libmysqlclient-dev
 # needs sudo apt-get install mysql-client-5.5/mysql-server-5.5
+# needs sudo apt-get install sphinxsearch
 gem 'mysql2', '0.3.13'
 gem 'thinking-sphinx', '3.0.6'
 gem 'yaml_db'
@@ -79,7 +82,7 @@ gem 'rmagick'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'

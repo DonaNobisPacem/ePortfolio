@@ -3,26 +3,17 @@
 <%= image_tag "author.png" %>
 
 <%= f.fields_for :contributors do |contributor|%>
-
     <% field_name = "#{contributor.object_name}[user_id]".gsub(/(\])?\[/, "_").chop %>
     <%= contributor.autocomplete_field :name, autocomplete_user_profile_last_name_projects_path, :update_elements => { :user_id => "##{field_name}" } %><br>
     <%= contributor.hidden_field :user_id %>
     <%= contributor.collection_select :contributor_type, ContributorType.order(:name), :id, :name %>
-    <%= contributor.link_to_remove "Remove this contributor" %>
+    <%= contributor.link_to_remove "<i class='fa fa-minus-square'></i>".html_safe %>
 <% end %>
 
-<%= f.link_to_add "Add a contributor", :contributors %><br> 
+<%= f.link_to_add '<i class="fa fa-plus-square"></i> Add contributors'.html_safe, :contributors, :class => "btn btn-success" %>
+<br><br> 
 
-<%= image_tag "desc.png"%> <%= f.text_field :description, :required => true, :autofocus => true, :placeholder => "Maximum of 250 words", :label => false %><br>
+<%= image_tag "desc.png"%> <%= f.text_area :description, :rows => 5, :required => true, :autofocus => true, :placeholder => "Type description here", :label => false %><br>
 <%= image_tag "tags.png"%> <%= f.text_field :tag_list, :placeholder => "Separated by commas", :label => false %><br>
 <%= image_tag "ref.png"%> <%= f.text_field :link, :required => true, :placeholder => "Project Source", :label => false %><br>
 
-<p>Add Screenshots:</p>
-<%= f.fields_for :gallery do |gal| %>
-    <%= gal.fields_for :screenshots do |ss| %>
-        <%= ss.text_field :description, :placeholder => "Image description" %>
-        <%= ss.file_field :image %>
-        <%= ss.link_to_remove "Remove this screenshot" %>
-    <% end %>
-    <%= gal.link_to_add "Add more screenshot", :screenshots %><br>
-<% end %>

@@ -19,4 +19,4 @@
 //= require bootstrap
 //= require google-code-prettify-rails/prettify
 //= require jquery_nested_form
-//= require_tree .
+//= require_tree

@@ -7,11 +7,13 @@ class UsersController < ApplicationController
 	end
 
 	def index
+		@notifications = PublicActivity::Activity.order('created_at desc')
 		@user = current_user
 		@users = User.paginate(page: params[:page], per_page: 10 )
 	end
 
 	def show
+		@notifications = PublicActivity::Activity.order('created_at desc')
 		@current_user = current_user
   		@user = User.find params[:id]
   		@user_profile = UserProfile.where( :user_id => @user.id ).first
