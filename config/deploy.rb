@@ -2,17 +2,18 @@
 lock '3.1.0'
 
 set :application, 'ePortfolio'
-set :repo_url, 'https://github.com/DonaNobisPacem/ePortfolio'
+set :repo_url, 'git@github.com:DonaNobisPacem/ePortfolio.git'
 set :branch, 'master'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/var/www/my_app'
+set :deploy_to, '/var/www/eportfolio'
+set :deploy_via, :copy
 
 # Default value for :scm is :git
-# set :scm, :git
+set :scm, :git
 
 # Default value for :format is :pretty
 # set :format, :pretty
@@ -55,5 +56,17 @@ namespace :deploy do
       # end
     end
   end
+
+  desc "Check that we can access everything"
+  task :check_write_permissions do
+    on roles(:all) do |host|
+      if test("[ -w #{fetch(:deploy_to)} ]")
+        info "#{fetch(:deploy_to)} is writable on #{host}"
+      else
+        error "#{fetch(:deploy_to)} is not writable on #{host}"
+      end
+    end
+  end
+
 
 end

@@ -13,7 +13,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 
 gem 'sqlite3'
 
-gem 'thin', :require => false
+# gem 'thin', :require => false
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -81,8 +81,11 @@ gem 'rmagick'
 # Use unicorn as the app server
 # gem 'unicorn'
 
+gem 'passenger'
+
 # Deploy with Capistrano
 gem 'capistrano'
+gem 'rvm-capistrano'
 
 # To use debugger
 # gem 'debugger'
