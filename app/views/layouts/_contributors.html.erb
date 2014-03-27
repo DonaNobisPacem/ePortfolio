@@ -1,10 +1,11 @@
 <% contributors.each do |cont| %>
 	<% if cont.user_id %>
-	<%= link_to cont.name, user_path(cont.user_id), :target => '_blank' %>
+		<%= link_to cont.name, user_path(cont.user_id), :target => '_blank' %>
+	<% else %>
+		<%= cont.name %>
+	<% end %>
+
 	<%if ContributorType.select( :name ).where( :id => cont.contributor_type.to_i ).first %>
 	 - <%= ContributorType.select( :name ).where( :id => cont.contributor_type.to_i ).first.name %><br>
-	<% end %>
-	<% else %>
-	<%= cont.name %>
 	<% end %>
 <% end %>

@@ -71,8 +71,8 @@
                       <%= g.fields_for :user_profile do |profile| %>
                         <%= profile.text_field :first_name, :required => true, :class => "input-medium", :placeholder => "First Name", :label => false %>
                         <%= profile.text_field :last_name, :required => true, :class => "input-medium", :placeholder => "Last Name", :label => false %>
-                        <%= g.input :username, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Username", :label => false, :validate => true %>
-                        <%= g.input :email, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Email", :label => false %>
+                        <%= g.text_field :username, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Username", :label => false, :validate => true %>
+                        <%= g.text_field :email, :required => true, :autofocus => true, :class => "input-medium", :placeholder => "Email", :label => false %>
                         <%= g.password_field :password, :required => true, :class => "input-medium", :placeholder => "Password", :label => false %>
                         <%= g.password_field :password_confirmation, :required => true, :class => "input-medium", :placeholder => "Re-enter password", :label => false %>
                       <% end %>
