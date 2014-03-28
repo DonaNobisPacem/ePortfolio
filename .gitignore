@@ -18,6 +18,7 @@
 *.rbc
 /.config
 /coverage/
+/public/images/
 /InstalledFiles
 /pkg/
 /spec/reports/
