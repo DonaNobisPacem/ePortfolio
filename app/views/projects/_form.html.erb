@@ -1,16 +1,17 @@
 <%= f.hidden_field :creator, :value => current_user.id %>
 <%= image_tag "title.png"%> <%= f.text_field :title, :required => true, :autofocus => true, :placeholder => "Project Title", :label => false %><br>
-<%= image_tag "author.png" %>
 
+<%= image_tag "author.png" %>
 <%= f.fields_for :contributors do |contributor|%>
     <% field_name = "#{contributor.object_name}[user_id]".gsub(/(\])?\[/, "_").chop %>
-    <%= contributor.autocomplete_field :name, autocomplete_user_profile_last_name_projects_path, :update_elements => { :user_id => "##{field_name}" } %><br>
+    <%= contributor.autocomplete_field :name, autocomplete_user_profile_last_name_projects_path, :update_elements => { :user_id => "##{field_name}" } %>
     <%= contributor.hidden_field :user_id %>
     <%= contributor.collection_select :contributor_type, ContributorType.order(:name), :id, :name %>
     <%= contributor.link_to_remove "<i class='fa fa-minus-square'></i>".html_safe %>
 <% end %>
 
 <%= f.link_to_add '<i class="fa fa-plus-square"></i> Add contributors'.html_safe, :contributors, :class => "btn btn-success" %>
+
 <br><br> 
 
 <%= image_tag "desc.png"%> <%= f.text_area :description, :rows => 5, :required => true, :autofocus => true, :placeholder => "Type description here", :label => false %><br>

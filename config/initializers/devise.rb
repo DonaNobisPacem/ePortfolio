@@ -18,7 +18,7 @@ Devise.setup do |config|
   require 'devise/orm/active_record'
   require 'omniauth-facebook'
   require 'omniauth-twitter'
-  config.omniauth :facebook, "212513502255662", "0b5190b32201b280a8286a9d89b98acf"
+  config.omniauth :facebook, "261592487353172", "859baf758fd56fb0977ac88a415124b8"
   config.omniauth :twitter, "gDCuImLc1A2pBVuln64ckA", "   3XxyQ82VVpQ38smRY4kwx9UWoNiIOhFi6ETpn2toqMs"
 
   # ==> Configuration for any authentication mechanism
