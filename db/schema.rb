@@ -241,6 +241,7 @@ ActiveRecord::Schema.define(:version => 20131029172116079) do
     t.string   "mobile_number"
     t.string   "website_address"
     t.string   "others"
+    t.string   "remote_image_url"
   end
 
   create_table "user_projects", :force => true do |t|

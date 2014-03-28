@@ -10,20 +10,16 @@
 					<%= @user_profile.fullname %> <br>
 
 
-					Featured project:
-					<div class="hero-unit" style="background-color: #015629" align="center">
-						<% if @user_profile.featured_project %>
-						Title:<br>
-						<%= link_to @featured.title, @featured, :target => '_blank' %><br>
-						Description:<br>
-						<%= @featured.description %><br>
-						<% else %>
-						<%= @user_profile.featured_project_title %>
-						<% end %>
+					<% if @user_profile.featured_project %>
+						Featured project:
+							Title:<br>
+							<%= link_to @featured.title, @featured, :target => '_blank' %><br>
+							Description:<br>
+							<%= @featured.description %><br>
+							<% else %>
+							<%= @user_profile.featured_project_title %>
+					<% end %>
 
-					</div>
-
-					<%= @user_profile.fullname %>'s projects:
 					<%= render '/layouts/projectlist', :projects => @projects %>
 
 					<div class='container'>
@@ -51,15 +47,15 @@
 			          </div>
 			          <div class='container'>
 			          <b>Employment History:</b><br>
-			          <%= @user_profile.employment_history %><br>
+			          <%= simple_format(@user_profile.employment_history) %><br>
 			          </div>
 			          <div class='container'>
 			          <b>Achievements:</b><br>
-			          <%= @user_profile.achievements %><br>
+			          <%= simple_format(@user_profile.achievements) %><br>
 			          </div>
 			          <div class='container'>
 			          <b>Other relevant information:</b><br>
-			          <%= @user_profile.others %><br>
+			          <%= simple_format(@user_profile.others) %><br>
 			          </div>
 	</div><!-- /hero-unit-->
 </div><!-- /containerfluid -->

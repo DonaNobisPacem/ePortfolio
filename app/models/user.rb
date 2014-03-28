@@ -52,8 +52,10 @@ class User < ActiveRecord::Base
             :password => Devise.friendly_token[0,20],
             :user_profile_attributes => 
               {
-                :name => data.extra.raw_info.name,
-                },
+                :first_name => data.extra.raw_info.first_name,
+                :last_name => data.extra.raw_info.last_name,
+                :remote_image_url => data.extra.raw_info.image,
+              },
             :user_auths_attributes =>
             {
               :uid => data.uid,
@@ -62,8 +64,8 @@ class User < ActiveRecord::Base
           }
         }
         user = User.create!(params[:user])
-      end
-      return user
+    end
+    return user
   end
 
   def self.find_for_twitter_oauth(provider, uid, name, signed_in_resource=nil)

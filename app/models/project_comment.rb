@@ -6,5 +6,5 @@ class ProjectComment < ActiveRecord::Base
   include PublicActivity::Model
   tracked
   
-  #tracked except: :update, owner: Proc.new{ |controller, model| controller.current_user }
+  tracked except: :update, owner: Proc.new{ |controller, model| controller.current_user }
 end

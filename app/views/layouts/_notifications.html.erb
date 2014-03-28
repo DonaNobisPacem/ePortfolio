@@ -1,17 +1,36 @@
 <% @notifications = PublicActivity::Activity.order('created_at desc') %>
 <% @notifications.each do |activity| %>
-	<% if activity.trackable.creator == current_user.id %>
-		<li class="presentation">
-			<div role="menuitem" align="center">
-				<div class="activity">
-					<% @user_profile = UserProfile.where( :user_id => activity.owner_id ).first %>
-					<%= link_to @user_profile.fullname, activity.owner if activity.owner %>
-					<%= render_activity activity %>
+	<% if activity.trackable_type == 'Project' %>
+		<% if activity.trackable.creator == current_user.id %>
+			<li class="presentation">
+				<div role="menuitem" align="center">
+					<div class="activity">
+						<% @user_profile = UserProfile.where( :user_id => activity.owner_id ).first %>
+						<%= link_to @user_profile.fullname, activity.owner if activity.owner %>
+						<%= render_activity activity %>
+					</div>
 				</div>
+			</li>
+			<div align="center">
+				<hr style="border-top: 1px solid; color: #000000; width: 85%;">
 			</div>
-		</li>
-		<div align="center">
-			<hr style="border-top: 1px solid; color: #000000; width: 85%;">
-		</div>
-	<% end %>
+		<% end %>
+	<% elsif activity.trackable_type == 'ProjectComment' %>
+		<% if activity.trackable.project.creator == current_user.id %>
+			<li class="presentation">
+				<div role="menuitem" align="center">
+					<div class="activity">
+						<% @user_profile = UserProfile.where( :user_id => activity.owner_id ).first %>
+						<%= link_to @user_profile.fullname, activity.owner if activity.owner %>
+						<%= render_activity activity %>
+					</div>
+				</div>
+			</li>
+			<div align="center">
+				<hr style="border-top: 1px solid; color: #000000; width: 85%;">
+			</div>
+		<% end %>
+	<% else %>
+		<b>Wat?</b>
+	<%end%>
 <% end %>

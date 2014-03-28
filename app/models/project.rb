@@ -21,5 +21,4 @@ class Project < ActiveRecord::Base
   tracked
 
   tracked except: :update, owner: Proc.new{ |controller, model| controller.current_user }
-
 end

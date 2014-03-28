@@ -1,73 +1,54 @@
 <% provide(:title, 'Project Details') %>
 
 <div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
-    <div class="span12 hero-unit offset2" style="background-color: #e6fae1; width: 65%" align="center">
-<h2>Project Details</h2>
+  <div class="span12 hero-unit offset2" style="background-color: #e6fae1; width: 65%" align="center">
+    <h2><%= @project.title %></h2>
 
-<% if current_user.id == @project.creator %>
-  <%= link_to "Edit project", edit_project_path %>
-<% end %>
+    <% if current_user.id == @project.creator %>
+      <%= link_to "Edit project", edit_project_path %>
+    <% end %>
 
-<div class="tabbable">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#info" data-toggle="tab">Project Information</a></li>
-    <li><a href="#comment" data-toggle="tab">Comments</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="info">
-      <div class="row">
-          <h3>
-            <!--<b>Title:</b> Use this instead for header-->
-            <%= @project.title %>
-          </h3>
-
-          <p>
-            <b>Contributors:</b>
-            <%= render 'layouts/contributors', :contributors => @cont %>
-          </p>
-          </p>
-          <p>
-            <b>Description</b>
-            <%= @project.description %>
-          </p>
-          <hr>
-          <p>
-            <b>Tags:</b>
-            <%= raw @project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-          </p>
-          <p>
-            <b>Reference:</b>
-            <%= link_to @project.link, url_with_protocol(@project.link), :target => '_blank' %>
-          </p>
-          <p>
-            <b>Rating:</b>
-            <%= rating_for @project, "quality" %>
-          </p>
-      </div>
-    </div>
-    <div class="tab-pane" id="comment">
-      <h3>Comments:</h3>
-        <% if @comments.count > 0 %>
-          <% @comments.each do |comment| %>
-            <div class="container" class="row">
-              <%= UserProfile.where( user_id: comment.user_id ).first.fullname %>:
-              <%= comment.content %>
-              <%= comment.created_at %>
-            </div>
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#info" data-toggle="tab">Information</a></li>
+        <li><a href="#projectcomment" data-toggle="tab">Comments</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="info">
+          <div class="row">
+              <p>
+                <b>Contributors:</b><br>
+                <%= render 'layouts/contributors', :contributors => @cont %>
+              </p>
+              <p>
+                <b>Description:</b><br>
+                <%= @project.description %>
+              </p>
+              <p>
+                <b>Tags:</b><br>
+                <%= raw @project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+              </p>
+              <p>
+                <b>Reference:</b>
+                <%= link_to @project.link, url_with_protocol(@project.link), :target => '_blank' %>
+              </p>
+              <p>
+                <b>Rating:</b>
+                <%= rating_for @project, "quality" %>
+              </p>
+          </div>
+        </div>
+        <div class="tab-pane" id="projectcomment">
+          <% if user_signed_in? %>
+              <%= render 'addcomments' %>
           <% end %>
-          <%= will_paginate @comments %>
-        <% else %>
-          <p>No comments available for this project.</p>
-        <% end %>
 
-      <% if user_signed_in? %>
-          <%= render 'comments' %>
-      <% else %>
-        <p>Not signed in</p>
-      <% end %>
+          <h3>Comments:</h3>
+          <%= render 'comments', :comments => @comments %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
-</div>
+
 

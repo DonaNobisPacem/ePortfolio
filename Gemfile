@@ -13,12 +13,17 @@ gem 'bootstrap-will_paginate', '0.0.6'
 
 gem 'sqlite3'
 
-# gem 'thin', :require => false
+
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+group :assets, :development, :test do
+	gem 'thin', :require => false
+  	gem 'sass-rails',   '~> 3.2.3'
+  	gem 'coffee-rails', '~> 3.2.1'
+
+	gem 'capybara'
+	gem 'rspec-rails'
+	gem 'selenium-webdriver'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -71,7 +76,6 @@ gem 'carrierwave'
 gem 'rmagick'
 # needs sudo apt-get install libmagickwand-dev
 
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -81,11 +85,13 @@ gem 'rmagick'
 # Use unicorn as the app server
 # gem 'unicorn'
 
-gem 'passenger'
 
 # Deploy with Capistrano
-gem 'capistrano'
-gem 'rvm-capistrano'
+group :production do
+ gem 'passenger'
+ gem 'capistrano'
+ gem 'rvm-capistrano'
+end
 
 # To use debugger
 # gem 'debugger'

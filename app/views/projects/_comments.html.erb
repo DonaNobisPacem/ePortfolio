@@ -1,19 +1,16 @@
-<% if user_signed_in? %>
-
-  <% @project.project_comments.build %>
-
-  <%= simple_form_for @project do |f| %>
-    <%= f.error_notification %>
-    <div class="form-inputs">
-      <h3> Add Comment </h3>
-        <%= f.fields_for :project_comments, @project.project_comments.build do |comment| %>
-        	<%= comment.text_area :content, :required => true, :autofocus => true, :size => "30x5" %>
-          <%= comment.hidden_field :user_id, :value => @user.id %>
-        <% end %>
-    </div>
-
-      <%= f.button :submit, "Submit Comment", :class => "btn btn-success" %>
+<div class="comments">
+  <% if comments.count > 0 %>
+    <% comments.each do |comment| %>
+      <div class="hero-unit" style="background-color: #015629" align="center">
+        <% commenter = UserProfile.where( user_id: comment.user_id ).first %>
+        <%= image_tag commenter.image_url(:tiny).to_s %>
+        <%= link_to commenter.fullname, user_path(commenter.user_id), :target => '_blank' %>:<br>
+        <%= comment.content %><br>
+        <%= comment.created_at.strftime("Added on %m/%d/%Y at %I:%M%p") %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No comments available for this project.</p>
   <% end %>
-<% else %>
-  <p> Sign in to add comments </p>
-<% end %>
+</div>
+<%= will_paginate comments %>
