@@ -67,17 +67,13 @@
 			<span class="icon-bar"></span>
 	    </a>
 
-	    <a class="brand" href="/"><%= image_tag "brand.png", :style => "margin-top: -4%" %></a>
-
 	    <div class="nav-collapse">
 			<ul class="nav pull-left">
 			  <li class="">
-			    <div class="input-append" style="margin-top: 2.5%">
+			    <div class="input-append" style="margin-top: 2%; margin-left: 4%">
 			      <%= form_tag search_path, :method => 'get', :class => "form-search" do %>
-		              <!-- <input type="text" name="q" class="span2 search-query" placeholder="Search for files, etc<!-- " style="width: 130%">
-		              <button type="submit" class="btn" style="margin-left: -5%"><i class="icon-search"></i></button> -->
 
-				    <%= text_field_tag :search, params[:search], :class => "span2 search-query", :placeholder => "Search for users or projects", :style => "width: 145%" %>    
+				    <%= text_field_tag :search, params[:search], :class => "span2 search-query", :placeholder => "Search for users or projects", :style => "width: 100%" %>    
 
 				    <%= button_tag :type => "submit", :class => "btn", :style => "margin-left: -5%" do %>
 				    <i class="icon-search"></i>
@@ -99,11 +95,6 @@
 			  	<% end %>
 			  </li>
 			  <li class="">
-			  	<%= link_to edit_user_registration_path do %>
-			  	<i class="fa fa-gear"></i> Settings
-			  	<% end %>
-			  </li>
-			  <li class="">
 			  	<%= link_to new_project_path do %>
 			  	<i class="fa fa-plus-square"></i> Create Project
 			  	<% end %>
@@ -116,6 +107,11 @@
 					<div id="inner-content-div">
 						<%= render 'layouts/notifications' %>
 					</div></ul>
+			  </li>
+			  <li class="">
+			  	<%= link_to edit_user_registration_path do %>
+			  	<i class="fa fa-gear"></i> Settings
+			  	<% end %>
 			  </li>
 			  <!-- <li class="">
 			  	<% link_to help_path do %>

@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_one :user_profile, :dependent => :destroy
   accepts_nested_attributes_for :user_profile
 
+  after_save ThinkingSphinx::RealTime.callback_for(:user)
   letsrate_rater
 
   validates :username,

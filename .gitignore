@@ -26,6 +26,9 @@
 /test/version_tmp/
 /tmp/
 
+/config/development.sphinx.conf
+/db/sphinx/*
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history

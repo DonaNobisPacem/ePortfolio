@@ -1,0 +1,4 @@
+production:
+  pid_file:  /var/www/eportfolio/shared/tmp/searchd.pid
+  indices_location: /var/www/eportfolio/shared/db/sphinx
+  configuration_file:  /var/www/eportfolio/shared/production.sphinx.conf

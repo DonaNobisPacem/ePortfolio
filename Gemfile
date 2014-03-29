@@ -76,6 +76,8 @@ gem 'carrierwave'
 gem 'rmagick'
 # needs sudo apt-get install libmagickwand-dev
 
+gem 'whenever'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
