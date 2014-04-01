@@ -6,7 +6,7 @@
 
 	Education: <br>
 		<% unless profile.tertiary_education.blank? %>
-			Tertiary Education: <%= profile.tertiary_education %><br>
+			College/University: <%= profile.tertiary_education %><br>
 			Year Graduated: <%= profile.tertiary_education_grad %><br>
 		<% end %>
 		<% unless profile.vocational_education.blank? %>

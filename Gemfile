@@ -56,7 +56,6 @@ gem 'acts-as-taggable-on'
 
 # layouts
 gem 'font-awesome-rails'
-gem 'google-code-prettify-rails'
 
 # friends
 gem 'amistad'

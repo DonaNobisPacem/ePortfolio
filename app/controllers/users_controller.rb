@@ -12,12 +12,16 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@current_user = current_user
-  		@user = User.find params[:id]
-  		@user_profile = UserProfile.where( :user_id => @user.id ).first
-  		@friends = @user.friends
-  		@projects = Project.where( :creator => @user.id ).paginate(page: params[:page], per_page: 10 )
-  		@featured = Project.where( :id => @user_profile.featured_project ).first
+		if params[:id] == "sign_out"
+			redirect_to(destroy_user_session_path, '_method' => 'delete')
+		else
+			@current_user = current_user
+	  		@user = User.find params[:id]
+	  		@user_profile = UserProfile.where( :user_id => @user.id ).first
+	  		@friends = @user.friends
+	  		@projects = Project.where( :creator => @user.id ).paginate(page: params[:page], per_page: 10 )
+	  		@featured = Project.where( :id => @user_profile.featured_project ).first
+	  	end
   	end
 	
 	def create

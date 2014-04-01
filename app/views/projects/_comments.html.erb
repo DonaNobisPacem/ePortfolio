@@ -1,7 +1,7 @@
 <div class="comments">
   <% if comments.count > 0 %>
     <% comments.each do |comment| %>
-      <div class="hero-unit" style="background-color: #015629" align="center">
+      <div class="hero-unit" style="background-color: #F5F5DC; border-width: 1px; border-style: solid; border-color: black" align="center">
         <% commenter = UserProfile.where( user_id: comment.user_id ).first %>
         <%= image_tag commenter.image_url(:tiny).to_s %>
         <%= link_to commenter.fullname, user_path(commenter.user_id), :target => '_blank' %>:<br>

@@ -1,8 +1,15 @@
-<% provide(:title, 'Edit User') %>
+<% provide(:title, 'User Settings') %>
+<style>
+label{
+  width: 10em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block
+} 
+</style>
 <div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
-    <div class="hero-unit" style="background-color: #e6fae1" align="center">
-
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <div class="hero-unit offset2" style="background-color: #e6fae1; width: 65%" align="center">
 
 <% resource.build_user_profile if resource.user_profile.nil? %>
 <%= simple_nested_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put , :multipart => true }) do |f| %>
@@ -19,42 +26,46 @@
 
     <div class="tab-content">
       <div class="tab-pane active" id="account">
-        <div class="row">
-          <div class="span6">
-            <%= f.text_field :email, :required => true, :autofocus => false, :label => false %><br>
-
+        <!-- <div class="row">
+          <div class="span6"> -->
+            <%= f.input :email, :required => true, :autofocus => false, :placeholder => "Email", :label => "Account Email", :input_html => {:style=> 'width: 52.5%'} %>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
             <% end %>
-
-            <%= f.text_field :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false, :label => false, :placeholder => "New Password" %><br>
-            <%= f.text_field :password_confirmation, :required => false, :label => false, :placeholder => "Re-enter Password" %><br>
-          </div> <!-- span6 -->
-        </div> <!-- row -->
+            <%= f.label :password, "New Password"%>
+            <%= f.password_field :password, :autocomplete => false, :required => false, :placeholder => "New Password", :style=> 'width: 52.5%' %>
+            
+            <%= f.password_field :password_confirmation, :required => false, :placeholder => "Re-enter Password", :style=> 'width: 52.5%' %>
+            <%= f.label :password_field, "Confirm Password"%>
+          <!-- </div> --> <!-- span6 -->
+        <!-- </div> --> <!-- row -->
       </div> <!-- tab-pane -->
 
         <div class="tab-pane" id="info">
-          <b>Basic information:</b>
-          <%= profile.input :first_name, :required => true %>
-          <%= profile.input :last_name, :required => true %>
+          <b>Basic Information</b>
+          <%= profile.input :first_name, :required => true, :label => "First name", :input_html => {:style=> 'width: 52.5%'} %>
+          <%= profile.input :last_name, :required => true, :label => "Last name", :input_html => {:style=> 'width: 52.5%'} %>
           <%= profile.label :birthday, "Birthday" %>
-          <%= profile.date_select :birthday, :start_year => 1950 %>
-          <%= profile.input :current_address, :placeholder => 'current_address' %>
-          <%= profile.input :permanent_address, :placeholder => 'permanent_address' %>
-          <b>Education:</b>
-          <%= profile.input :tertiary_education, :placeholder => "tertiary_education" %>
-          <%= profile.input :tertiary_education_grad, :placeholder => 'tertiary_education_grad' %>
-          <b>Contact information:</b>
-          <%= profile.input :primary_email, :placeholder => "primary_email" %>
-          <%= profile.input :mobile_number, :placeholder => 'mobile_number' %>
-          <b>Achievements:</b>
-          <%= profile.text_area :achievements, :size => "60x5" %>
-          <b>Featured Project:</b>
-          <%= profile.autocomplete_field :featured_project_title, autocomplete_project_title_users_path, :id_element => "#featured_project", :placeholder => "Project title" %>
+          <%= profile.date_select :birthday, { :order => [:month, :day, :year], :start_year => DateTime.now.year, :end_year => DateTime.now.year - 100 }, :style => "width: 17.5%;" %>
+          <%= profile.input :current_address, :placeholder => 'Current Address', :label => "Current Address", :input_html => {:style=> 'width: 52.5%'} %>
+          <%= profile.input :permanent_address, :placeholder => 'Permanent Address', :label => "Permanent Address", :input_html => {:style=> 'width: 52.5%'} %>
+          <b>Education</b>
+          <%= profile.input :tertiary_education, :placeholder => "College", :label => "College", :input_html => {:style=> 'width: 52.5%'} %>
+          <%= profile.input :tertiary_education_grad, :placeholder => 'Year Graduated', :label => "Graduation Date", :input_html => {:style=> 'width: 52.5%'} %>
+          <b>Contact Information</b>
+          <%= profile.input :primary_email, :placeholder => "Email Address", :label => "Email Address", :input_html => {:style=> 'width: 52.5%'} %>
+          <%= profile.input :mobile_number, :placeholder => 'Mobile Number', :label => "Mobile Number", :input_html => {:style=> 'width: 52.5%'} %>
+          <b>Achievements:</b><br>
+          <%= profile.text_area :achievements, :placeholder => "List of achievements", :style => "width: 52.5%; height: 120px" %><br>
+          <b>Featured Project</b><br>
+          <p>
+          <%= profile.autocomplete_field :featured_project_title, autocomplete_project_title_users_path, :id_element => "#featured_project", :placeholder => "Project title", :style=> 'width: 52.5%' %>
           <%= profile.hidden_field :featured_project, :id => "featured_project"%>
-
-          <%= profile.label :image, "Avatar" %>
+          </p>
+          <p>
+          <%= profile.label :image, "User Avatar" %>
           <%= profile.file_field :image %>
+          </p>
         </div> <!-- tab-pane --> 
 
       <% end %>
@@ -66,11 +77,6 @@
 
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel Account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
-
-<%= button_to "Back", :back, :class => "btn btn-success" %>
-
+<%= button_to "Cancel Account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %>
 </div>
 </div>

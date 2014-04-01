@@ -23,9 +23,8 @@
 		</div>
 		<!-- rowfluid -->
 		<div class="row-fluid">
-			<div class="span12">
 				<%= render 'featured', :projects => @projects, :featured => @featured %>
-			</div>
 		</div>
+		<%= will_paginate @projects %>
 	</div><!-- /hero-unit-->
 </div><!-- /containerfluid -->

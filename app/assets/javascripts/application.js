@@ -11,12 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.ui.autocomplete
 //= require jquery_ujs
 //= require autocomplete-rails
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require bootstrap
-//= require google-code-prettify-rails/prettify
 //= require jquery_nested_form
 //= require_tree
