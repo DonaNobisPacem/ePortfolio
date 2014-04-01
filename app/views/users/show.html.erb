@@ -1,61 +1,31 @@
 <% provide(:title, 'User Profile') %>
 <div class="container-fluid" style="background-color: #015629; padding-top: 5%; padding-bottom: 5%">
 	<div class="hero-unit" style="background-color: #e6fae1" align="center">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="row-fluid">
+					<div class="span4">
 
 					<%= link_to @user_profile.image_url, :target => "_blank" do %>
 						<%= image_tag @user_profile.image_url(:thumb).to_s%>
 					<% end %>
 					<br/>
-
-					<%= @user_profile.fullname %> <br>
-
-
-					<% if @user_profile.featured_project %>
-						Featured project:
-							Title:<br>
-							<%= link_to @featured.title, @featured, :target => '_blank' %><br>
-							Description:<br>
-							<%= @featured.description %><br>
-							<% else %>
-							<%= @user_profile.featured_project_title %>
-					<% end %>
-
-					<%= render '/layouts/projectlist', :projects => @projects %>
-
-					<div class='container'>
-					<b>Basic information:</b><br>
-			          Birthday: <%= @user_profile.birthday %> <br>
-			          Current Address: <%= @user_profile.current_address %> <br>
-			          Permanent Address<%= @user_profile.permanent_address  %> <br>
-			          </div>
-			          <div class='container'>
-			          <b>Education:</b><br>
-			          Primary Education: <%= @user_profile.primary_education %><br>
-			          Year graduated: <%= @user_profile.primary_education_grad %><br>
-			          Secondary Education: <%= @user_profile.secondary_education %><br>
-			          Year graduated: <%= @user_profile.secondary_education_grad %><br>
-			          Tertiary Education: <%= @user_profile.tertiary_education %><br>
-			          Year graduated: <%= @user_profile.tertiary_education_grad %><br>
-			          Vocational Education: <%= @user_profile.vocational_education %><br>
-			          Year Graduated: <%= @user_profile.vocational_education_grad %><br>
-			          </div>
-			          <div class='container'>
-			          <b>Contact information:</b><br>
-			          Primary Email: <%= @user_profile.primary_email %><br>
-			          Mobile Number: <%= @user_profile.mobile_number %><br>
-			          Website: <%= @user_profile.website_address %><br>
-			          </div>
-			          <div class='container'>
-			          <b>Employment History:</b><br>
-			          <%= simple_format(@user_profile.employment_history) %><br>
-			          </div>
-			          <div class='container'>
-			          <b>Achievements:</b><br>
-			          <%= simple_format(@user_profile.achievements) %><br>
-			          </div>
-			          <div class='container'>
-			          <b>Other relevant information:</b><br>
-			          <%= simple_format(@user_profile.others) %><br>
-			          </div>
+					</div>
+					<!-- span4 -->
+					<div class="span8" align="left">
+						<%= render 'info', :profile => @user_profile %>
+					</div>
+					<!-- span8 -->
+				</div>
+				<!-- rowfluid -->
+			</div>
+			<!-- span12 -->
+		</div>
+		<!-- rowfluid -->
+		<div class="row-fluid">
+			<div class="span12">
+				<%= render 'featured', :projects => @projects, :featured => @featured %>
+			</div>
+		</div>
 	</div><!-- /hero-unit-->
 </div><!-- /containerfluid -->

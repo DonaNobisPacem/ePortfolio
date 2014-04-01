@@ -7,7 +7,7 @@
     <div class="form-inputs">
       <h3> Add Comment </h3>
         <%= f.fields_for :project_comments, @project.project_comments.build do |comment| %>
-        	<%= comment.text_area :content, :required => true, :autofocus => true, :size => "30x5" %>
+        	<%= comment.text_area :content, :required => true, :autofocus => true, :size => "60x5" %>
           <%= comment.hidden_field :user_id, :value => @user.id %>
         <% end %>
     </div>

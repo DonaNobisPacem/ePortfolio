@@ -1,0 +1,23 @@
+<div class="container">
+	Name: <%= profile.fullname %> <br>
+	<% unless profile.birthday.blank? %> Birthday: <%= profile.birthday %> <br> <% end%>
+	<% unless profile.current_address.blank? %> Present Address: <%= profile.current_address %> <br> <% end %>
+	<% unless profile.permanent_address.blank? %> Permanent Address: <%= profile.permanent_address  %> <br> <% end %>
+
+	Education: <br>
+		<% unless profile.tertiary_education.blank? %>
+			Tertiary Education: <%= profile.tertiary_education %><br>
+			Year Graduated: <%= profile.tertiary_education_grad %><br>
+		<% end %>
+		<% unless profile.vocational_education.blank? %>
+			Vocational Education: <%= profile.vocational_education %><br>
+			Year Graduated: <%= profile.vocational_education_grad %><br>
+		<% end %>
+
+	Contact Information: <br>
+		<% unless profile.mobile_number.blank? %> Mobile Number: <%= profile.mobile_number %><br><% end %>
+		<% unless profile.primary_email.blank? %> Primary Email: <%= profile.primary_email %><br><% end %>
+
+	Achievements: <br>
+		<% unless profile.achievements.blank? %><%= simple_format(profile.achievements) %><br><% end %>
+</div>

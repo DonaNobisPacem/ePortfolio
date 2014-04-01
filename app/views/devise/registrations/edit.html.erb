@@ -39,32 +39,22 @@
           <%= profile.input :last_name, :required => true %>
           <%= profile.label :birthday, "Birthday" %>
           <%= profile.date_select :birthday, :start_year => 1950 %>
-          <%= profile.label :image, "Avatar" %>
-          <%= profile.file_field :image %>
           <%= profile.input :current_address, :placeholder => 'current_address' %>
           <%= profile.input :permanent_address, :placeholder => 'permanent_address' %>
           <b>Education:</b>
-          <%= profile.input :primary_education, :placeholder => "Primary Education" %>
-          <%= profile.input :primary_education_grad, :placeholder => "Date Graduated" %>
-          <%= profile.input :secondary_education, :placeholder => "secondary_education" %>
-          <%= profile.input :secondary_education_grad, :placeholder => "secondary_education_grad" %>
           <%= profile.input :tertiary_education, :placeholder => "tertiary_education" %>
           <%= profile.input :tertiary_education_grad, :placeholder => 'tertiary_education_grad' %>
-          <%= profile.input :vocational_education, :placeholder => "vocational_education" %>
-          <%= profile.input :vocational_education_grad, :placeholder => 'vocational_education_grad' %>
           <b>Contact information:</b>
           <%= profile.input :primary_email, :placeholder => "primary_email" %>
           <%= profile.input :mobile_number, :placeholder => 'mobile_number' %>
-          <%= profile.input :website_address, :placeholder => 'website_address' %>
-          <b>Employment History:</b>
-          <%= profile.text_area :employment_history %>
           <b>Achievements:</b>
-          <%= profile.text_area :achievements %>
-          <b>Other relevant information:</b>
-          <%= profile.text_area :others %>
+          <%= profile.text_area :achievements, :size => "60x5" %>
           <b>Featured Project:</b>
           <%= profile.autocomplete_field :featured_project_title, autocomplete_project_title_users_path, :id_element => "#featured_project", :placeholder => "Project title" %>
           <%= profile.hidden_field :featured_project, :id => "featured_project"%>
+
+          <%= profile.label :image, "Avatar" %>
+          <%= profile.file_field :image %>
         </div> <!-- tab-pane --> 
 
       <% end %>

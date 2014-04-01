@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
             :user_auths_attributes =>
             {
               :uid => data.uid,
-              :provider => data.provider,
+              :provider => data.provider
             }
           }
         }

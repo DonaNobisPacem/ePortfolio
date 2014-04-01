@@ -1,0 +1,29 @@
+<br>
+<div class="isotope" align="center">
+  <% projects.each do |project| %>
+  <% if featured == project %>
+        <div class="pin" style="background-color: #FFFFCC">
+  <% else %>
+    <div class="pin">
+  <% end %>
+      <div class="holder">
+        <div style="border-color: black; border-style: solid; border-width: 1px;">
+          <%= image_tag 'project.jpg' %>
+        </div>
+
+        <p class="desc">
+          <b><%= link_to project.title, project %></b><br>
+          <%= render 'layouts/contributors', :contributors => project.contributors %><br><br>
+          <%= project.description %>
+        </p>
+
+        <% if project.tag_list.size > 0 %>
+          <br>
+          <p class="info">
+            <%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+          </p>
+        <% end %>
+      </div><!-- /.holder -->
+    </div><!-- /.pin-->
+  <% end %>
+</div>

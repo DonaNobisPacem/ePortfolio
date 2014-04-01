@@ -24,6 +24,7 @@ group :assets, :development, :test do
 	gem 'capybara'
 	gem 'rspec-rails'
 	gem 'selenium-webdriver'
+	gem 'database_cleaner'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "S&M ePortfolio" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "STRePSyls" %></title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Bootstrap" %>">
@@ -57,7 +57,7 @@
     <body style="padding-top: 0px; padding-bottom: 0px;">
     <% end %>
 
-    <div class="jumbotron" style="background-color: #e6fae1; padding-top: 10px; padding-bottom: 0px; border-bottom: 2px solid black">
+    <div class="jumbotron" style="background-color: #e6fae1; padding-top: 20px; padding-bottom: 10px; border-bottom: 2px solid black">
       <div class="container" align="center">
         <%= image_tag "logo.png", :style => "margin-bottom: 1%" %>
       </div>
@@ -77,7 +77,7 @@
 
      <div class="pull-right" style="margin-right: 1%; margin-top: 0.7%">
       <a href="#">
-        <%= image_tag 'celebi.gif' %>
+        <%= image_tag 'arrow.png' %>
       </a>
     </div>
 
@@ -93,7 +93,7 @@
             <div class="span4">
               <h2>About Us</h2>
               <p>
-                ePortfolio is an online program designed to showcase a user's work experience and abilities to possible employers and other interested parties.
+                STRePSyls is a web application designed to make media collation easier for the user through an online platform of showcasing information.
               <!--<br><i class="icon-bolt"></i> <i class="icon-remove"></i> <i class="icon-group"></i>-->
               </p>
             </div>
@@ -102,7 +102,7 @@
               <h2>Contact Us</h2>
               <i class="icon-globe"></i> Website: <a href="http://ws.dcs.upd.edu.ph/" style="color: #000000" target="_blank"><b>WSG</b></a><br>
               <i class="icon-facebook-sign" style="margin-left: 4%"></i> Facebook: <a href="https://www.facebook.com/pages/Web-Science-Group/150535988306252" style="color: #000000" target="_blank"><b>WSG</b></a><br>
-              <i class="icon-twitter"></i> Twitter: <a href="https://twitter.com/rom" style="color: #000000" target="_blank"><b>@rom</b></a>
+              <i class="icon-twitter"></i> Twitter: <a href="https://twitter.com/strepsyls" style="color: #000000" target="_blank"><b>@strepsyls</b></a>
             </div>
 
             <div class="span4" style="padding-top: 10px">
@@ -110,7 +110,7 @@
 
               <div style="padding-top: 10px">
                 <p>
-                  ePortfolio<%= image_tag 'space.png', :style => "width: 1.7%" %><%= image_tag 'copyright.gif', :style => "margin-bottom: .5%" %><%= image_tag 'space.png', :style => "width: 1.3%" %>2013
+                  STRePSyls<%= image_tag 'space.png', :style => "width: 1.7%" %><%= image_tag 'copyright.gif', :style => "margin-bottom: .5%" %><%= image_tag 'space.png', :style => "width: 1.3%" %>2013
                   <br>Powered by <a href="https://www.ruby-lang.org/en/" style="color: #000000" target="_blank">
                   <%= image_tag 'ruby.png', :style => "width: 4%; margin-bottom: 1%" %></a>
                   and <a href="http://getbootstrap.com/" style="color: #000000" target="_blank">
@@ -128,7 +128,6 @@
     <%= javascript_include_tag "jquery.min.js" %>
     <%= javascript_include_tag "jquery.slimscroll.js", "jquery.slimscroll.min.js" %>
     <%= javascript_include_tag "isotope.pkgd.js" %>
-    <%= javascript_include_tag "jquery.raty.js", "letsrate.js" %>
 
     <script>
       $('#myCarousel').carousel({
@@ -171,10 +170,6 @@
           $container.isotope({ sortBy: sortByValue });
         });
       });
-    </script>
-
-    <script>
-      var nav = responsiveNav(".nav-collapse");
     </script>
     
     </body>
