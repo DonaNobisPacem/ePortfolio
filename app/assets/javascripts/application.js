@@ -12,9 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.autocomplete
 //= require autocomplete-rails
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require bootstrap
 //= require jquery_nested_form
-//= require_tree
+//= require jquery.min.js
+//= require jquery.slimscroll.js
+//= require jquery.slimscroll.min.js
+//= require isotope.pkgd.js
+//= require jquery.raty.js
+//= require letsrate.js
+//= require carousel.js
+//= require index/index.js

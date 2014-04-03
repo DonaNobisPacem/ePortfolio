@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 3.minutes do
-	rake ts:index
+	rake ts:index RAILS_ENV=production
 end

@@ -1,12 +1,21 @@
 <div class="comments">
   <% if comments.count > 0 %>
     <% comments.each do |comment| %>
-      <div class="hero-unit" style="background-color: #F5F5DC; border-width: 1px; border-style: solid; border-color: black" align="center">
+      <div class="hero-unit" style="background-color: #F5F5DC; border-width: 1px; border-style: solid; border-color: black; height: 20%; width: 70%" align="center">
         <% commenter = UserProfile.where( user_id: comment.user_id ).first %>
+        <div style="float:left">
         <%= image_tag commenter.image_url(:tiny).to_s %>
-        <%= link_to commenter.fullname, user_path(commenter.user_id), :target => '_blank' %>:<br>
-        <%= comment.content %><br>
+        <%= link_to commenter.fullname, user_path(commenter.user_id), :target => '_blank' %>:
+        </div>
+        <br>
+        <br>
+        <div align="center">
+        <%= comment.content %>
+        </div>
+        <br>
+        <div style="float:right">
         <%= comment.created_at.strftime("Added on %m/%d/%Y at %I:%M%p") %>
+        </div>
       </div>
     <% end %>
   <% else %>
