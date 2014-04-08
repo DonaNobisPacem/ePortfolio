@@ -18,11 +18,11 @@
 //= require rails.validations.simple_form
 //= require bootstrap
 //= require jquery_nested_form
+//= require carousel.js
+//= require index/index.js
 //= require jquery.min.js
 //= require jquery.slimscroll.js
 //= require jquery.slimscroll.min.js
 //= require isotope.pkgd.js
 //= require jquery.raty.js
 //= require letsrate.js
-//= require carousel.js
-//= require index/index.js

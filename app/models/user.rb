@@ -53,15 +53,15 @@ class User < ActiveRecord::Base
             :password => Devise.friendly_token[0,20],
             :user_profile_attributes => 
               {
-                :first_name => data.extra.raw_info.first_name,
-                :last_name => data.extra.raw_info.last_name,
-                :remote_image_url => data.extra.raw_info.image,
+                :first_name => data.info.first_name,
+                :last_name => data.info.last_name,
+                #:remote_image_url => data.info.image
               },
             :user_auths_attributes =>
-            {
+            [{
               :uid => data.uid,
               :provider => data.provider
-            }
+            }]
           }
         }
         user = User.create!(params[:user])
